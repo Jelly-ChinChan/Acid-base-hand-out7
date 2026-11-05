@@ -477,7 +477,7 @@
             <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>Mg(OH)<sub>2(s)</sub></th><th>Mg<sup>2+</sup></th><th>2OH<sup>-</sup></th></tr>
             <tr><td><b>初 (I)</b></td><td>過量固體</td><td>0 M</td><td>0 M</td></tr>
             <tr><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋2<i>x</i></td></tr>
-            <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>約固體</td><td><i>x</i></td><td>2<i>x</i></td></tr>
+            <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>約固體</td><td><i>x</i></td><td><span class="gold-glow" style="padding: 1px 6px; border-radius: 3px; display: inline-block;">2<i>x</i></span></td></tr>
           </table>
           <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
             • <i>K</i><sub>b</sub> 表達式與計量推導求解：<br>
@@ -509,16 +509,16 @@
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.77rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
             <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 4px; font-size: 0.72rem; color: var(--chalk-cyan);">
-              <span>H-N(H)-H</span>
-              <span>H-O-H</span>
-              <span>H-N(H)(H)-OH</span>
+              <span>H<br>│<br>H-N-H</span>
+              <span>H<br>│<br>H-O</span>
+              <span>H<br>│<br>H-N(H)-OH</span>
               <span>NH<sub>4</sub><sup>+</sup> + OH<sup>-</sup></span>
             </div>
           </div>
           <div style="font-size:0.8rem; line-height:1.5;">
             • <b>巨觀微觀對比量化觀念</b>：<br>
             <span style="color:var(--chalk-yellow); font-weight:bold;">「每 100 個 NH<sub>3</sub> 中，就有 1 個形成 NH<sub>4</sub>OH」</span><br>
-            顯示弱鹼在水中的解離比例極低（部分解離）。
+            顯示弱鹼在水中的水解產生 OH<sup>-</sup> 的比例極低（部分解離）。
           </div>
         </div>
 
@@ -559,21 +559,26 @@
 
         <div class="section-box">
           <div class="sub-head" style="color:var(--chalk-yellow);">1. 酸性與鹼性公式全對比</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
-            <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--card-border); border-radius: 4px; padding: 6px;">
-              <div style="font-size: 0.75rem; font-weight: 800; color: var(--chalk-cyan); text-align:center;">🔴 酸性公式</div>
-              <div style="font-size: 0.74rem; font-family:monospace; color: var(--chalk-yellow); margin-top: 4px; text-align:center;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
+            
+            <!-- 紅色光暈酸性公式 -->
+            <div style="background: rgba(239, 68, 68, 0.15); border: 1.5px solid #ef4444; border-radius: 6px; padding: 8px; box-shadow: 0 0 12px rgba(239, 68, 68, 0.35); text-align: center;">
+              <div style="font-size: 0.76rem; font-weight: 900; color: #f87171; margin-bottom: 4px;">🔴 酸性公式</div>
+              <div style="font-size: 0.74rem; font-family: monospace; color: #fca5a5; line-height: 1.6;">
                 [H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>)<br>
                 α ＝ √(<i>K</i><sub>a</sub> / <i>c</i>)
               </div>
             </div>
-            <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--card-border); border-radius: 4px; padding: 6px;">
-              <div style="font-size: 0.75rem; font-weight: 800; color: var(--chalk-green); text-align:center;">🔵 鹼性公式</div>
-              <div style="font-size: 0.74rem; font-family:monospace; color: var(--chalk-green); margin-top: 4px; text-align:center;">
+
+            <!-- 藍色光暈鹼性公式 -->
+            <div style="background: rgba(59, 130, 246, 0.15); border: 1.5px solid #3b82f6; border-radius: 6px; padding: 8px; box-shadow: 0 0 12px rgba(59, 130, 246, 0.35); text-align: center;">
+              <div style="font-size: 0.76rem; font-weight: 900; color: #60a5fa; margin-bottom: 4px;">🔵 鹼性公式</div>
+              <div style="font-size: 0.74rem; font-family: monospace; color: #93c5fd; line-height: 1.6;">
                 [OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>)<br>
                 α ＝ √(<i>K</i><sub>b</sub> / <i>c</i>)
               </div>
             </div>
+
           </div>
         </div>
 
@@ -667,7 +672,7 @@
       <div>展氏新解 · 鹼性的計算與其共軛酸的酸性攻略講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">514</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">594</span> 次
       </div>
     </div>
 
