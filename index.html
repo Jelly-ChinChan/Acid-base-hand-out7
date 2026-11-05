@@ -17,6 +17,7 @@
       --chalk-orange: #fdba74;
       --chalk-green: #86efac;
       --chalk-red: #f87171;
+      --chalk-pink: #f472b6;
       --highlight-bg: rgba(253, 224, 71, 0.18);
       --section-box-bg: rgba(0, 0, 0, 0.22);
       --reaction-bg: rgba(0, 0, 0, 0.35);
@@ -44,6 +45,7 @@
       --chalk-orange: #c2410c;
       --chalk-green: #15803d;
       --chalk-red: #b91c1c;
+      --chalk-pink: #db2777;
       --highlight-bg: #fef3c7;
       --section-box-bg: #f1f5f9;
       --reaction-bg: #e2e8f0;
@@ -444,13 +446,19 @@
         </div>
 
         <div class="section-box">
-          <div class="sub-head" style="color: var(--chalk-yellow);">1. 強鹼：氫氧化鈉 (NaOH)</div>
+          <div class="sub-head" style="color: var(--chalk-pink);">1. 強鹼：氫氧化鈉 (NaOH)</div>
           <div class="chem-eq-hero" style="font-size:0.76rem; color:var(--chalk-green); margin:2px 0;">
             NaOH → Na<sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub> ＝ ∞
           </div>
           <div style="font-size:0.8rem; margin-top:4px; line-height:1.5;">
-            • <b>1 M 的氫氧化鈉水溶液中 [OH<sup>-</sup>]</b>：<br>
-            因為強鹼完全解離，故：<br>
+            • <b>1 M 的氫氧化鈉水溶液 ICE 計算</b>：<br>
+            <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
+              <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>NaOH</th><th>Na<sup>+</sup></th><th>OH<sup>-</sup></th></tr>
+              <tr><td><b>初 (I)</b></td><td>1 M</td><td>0 M</td><td>0 M</td></tr>
+              <tr><td><b>變 (C)</b></td><td>－1 M</td><td>＋1 M</td><td>＋1 M</td></tr>
+              <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>0 M</td><td>1 M</td><td>1 M</td></tr>
+            </table>
+            • <b>結論</b>：因為強鹼 100% 完全解離，故：<br>
             <span style="color:var(--chalk-yellow); font-weight:bold;">[OH<sup>-</sup>] ＝ 1 M</span>
           </div>
         </div>
@@ -524,7 +532,7 @@
             • 近似解與公式代入：<br>
             <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem;">
               <i>K</i><sub>b</sub> ＝ <i>x</i><sup>2</sup> / (0.1 － <i>x</i>) ≈ <i>x</i><sup>2</sup> / 0.1 ＝ 10<sup>-5</sup><br>
-              ⇒ [OH<sup>-</sup>] ＝ <i>x</i> ＝ √(0.1 × 10<sup>-5</sup>) ＝ <span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-3</sup> M</span>
+              ⇒ [OH<sup>-</sup>] ＝ <i>x</i> ＝ √(0.1 × 10<sup>-5</sup>) ＝ 10<sup>-3</sup> M
             </div>
           </div>
         </div>
@@ -572,9 +580,13 @@
             </div>
             • <b>【例題】請問 0.1 M NH<sub>3</sub> 水中的 pH 為何？</b><br>
             <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.75rem; margin-top:3px; background:rgba(0,0,0,0.3); padding:5px; border-radius:4px;">
-              ① 求 [OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>) ＝ √(0.1 × 10<sup>-5</sup>) ＝ 10<sup>-3</sup> M<br>
-              ② 求 pOH ＝ －log(10<sup>-3</sup>) ＝ 3<br>
-              ③ 求 pH ＝ 14 － pOH ＝ 14 － 3 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">11</span>
+              ① 求 [OH<sup>-</sup>]：<br>
+              &nbsp;&nbsp;&nbsp;[OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>) ＝ √(0.1 × 10<sup>-5</sup>)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ 10<sup>-3</sup> M<br>
+              ② 求 pOH：<br>
+              &nbsp;&nbsp;&nbsp;pOH ＝ －log(10<sup>-3</sup>) ＝ 3<br>
+              ③ 求 pH：<br>
+              &nbsp;&nbsp;&nbsp;pH ＝ 14 － pOH ＝ 14 － 3 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">11</span>
             </div>
           </div>
         </div>
@@ -595,17 +607,13 @@
           <div class="sub-head" style="color:var(--chalk-yellow);">1. 共軛酸鹼對常數關係推導</div>
           <div style="font-size:0.8rem; line-height:1.5; letter-spacing:-0.3px;">
             以銨根與氨 $\text{NH}_4^+ / \text{NH}_3$ 為例：<br>
-            • 酸 $\text{NH}_4^+$ 解離：<br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.72rem; text-align:center; margin:2px 0;">
-              NH<sub>4</sub><sup>+</sup> ⇌ NH<sub>3</sub> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub>
-            </div>
-            • 鹼 $\text{NH}_3$ 水解：<br>
-            <div style="font-family:monospace; color:var(--chalk-green); font-size:0.72rem; text-align:center; margin:2px 0;">
-              NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub>
-            </div>
-            • <b>兩式相加（水的自解離平衡）</b>：<br>
-            <div style="font-family:monospace; color:var(--chalk-yellow); font-size:0.73rem; text-align:center; margin:2px 0;">
-              H<sub>2</sub>O ⇌ H<sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>w</sub> ＝ <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup>
+            • <b>直式方程式相加與消去</b>：<br>
+            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin:4px 0; background:rgba(0,0,0,0.3); padding:6px; border-radius:4px; line-height:1.6;">
+              NH<sub>4</sub><sup>+</sup> ⇌ <span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>3</sub></span> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub><br>
+              <span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>3</sub></span> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> + OH<sup>-</sup> , <i>K</i><sub>b</sub><br>
+              <hr style="border: 0; border-top: 1.5px solid var(--chalk-yellow); margin: 4px 0;">
+              <b>H<sub>2</sub>O ⇌ H<sup>+</sup> ＋ OH<sup>-</sup></b><br>
+              <span style="color:var(--chalk-yellow); font-weight:bold;"><i>K</i><sub>w</sub> ＝ <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup></span>
             </div>
           </div>
         </div>
@@ -617,12 +625,16 @@
           <div style="font-size:0.79rem; line-height:1.5;">
             • <b>【例題】0.1 M NH<sub>4</sub><sup>+</sup> 水中的 pH ＝ 5（已知 NH<sub>3</sub> 的 <i>K</i><sub>b</sub> ＝ 10<sup>-5</sup>）</b><br>
             <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin-top:3px; background:rgba(0,0,0,0.3); padding:5px; border-radius:4px;">
-              ① 求 <i>K</i><sub>a</sub>：<br>
-              <i>K</i><sub>a</sub> ＝ 10<sup>-14</sup> / <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup> / 10<sup>-5</sup> ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-9</sup></span><br>
-              ② 計算 [H<sup>+</sup>]：<br>
-              [H<sup>+</sup>] ＝ √(0.1 × <i>K</i><sub>a</sub>) ＝ √(0.1 × 10<sup>-9</sup>) ＝ <span style="color:var(--chalk-green); font-weight:bold;">10<sup>-5</sup> M</span><br>
-              ③ 計算 pH：<br>
-              pH ＝ －log(10<sup>-5</sup>) ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">5</span>
+              ① 求共軛酸的 <i>K</i><sub>a</sub>：<br>
+              &nbsp;&nbsp;&nbsp;因需先知道 NH<sub>4</sub><sup>+</sup> 的 <i>K</i><sub>a</sub>，<br>
+              &nbsp;&nbsp;&nbsp;利用 <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ <i>K</i><sub>w</sub> ＝ 10<sup>-14</sup> 特性：<br>
+              &nbsp;&nbsp;&nbsp;<i>K</i><sub>a</sub> ＝ 10<sup>-14</sup> / 10<sup>-5</sup> ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-9</sup></span><br>
+              ② 計算氫離子濃度 [H<sup>+</sup>]：<br>
+              &nbsp;&nbsp;&nbsp;[H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ √(0.1 × 10<sup>-9</sup>)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ <span style="color:var(--chalk-green); font-weight:bold;">10<sup>-5</sup> M</span><br>
+              ③ 計算 pH 值：<br>
+              &nbsp;&nbsp;&nbsp;pH ＝ －log(10<sup>-5</sup>) ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">5</span>
             </div>
           </div>
         </div>
@@ -639,7 +651,7 @@
       <div>展氏新解 · 鹼性的計算與其共軛酸的酸性攻略講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">262</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">342</span> 次
       </div>
     </div>
 
