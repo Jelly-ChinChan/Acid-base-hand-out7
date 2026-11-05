@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【展氏新解】酸鹼平衡計算全攻略：多元酸、鹼性計算與共軛酸鹼對</title>
+  <style>
+    :root {
+      --bg-board: #142c1f;
+      --board-frame: #3d2314;
+      --card-bg: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.16);
+      --text-main: #f1f5f9;
+      --text-sub: #cbd5e1;
+      --chalk-yellow: #fde047;
+      --chalk-cyan: #67e8f9;
+      --chalk-orange: #fdba74;
+      --chalk-green: #86efac;
+      --chalk-red: #f87171;
+      --highlight-bg: rgba(253, 224, 71, 0.18);
+      --section-box-bg: rgba(0, 0, 0, 0.22);
+      --reaction-bg: rgba(0, 0, 0, 0.35);
+      --diagram-bg: rgba(0, 0, 0, 0.28);
+      --table-th-bg: rgba(255, 255, 255, 0.1);
+      --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+
+      --ext-card-bg: #131a2e;
+      --ext-card-border: #3b4261;
+      --ext-title: #c084fc;
+      --ext-badge-bg: rgba(192, 132, 252, 0.18);
+      --ext-badge-border: #a855f7;
+      --ext-inner-box: rgba(0, 0, 0, 0.3);
+    }
+
+    body.theme-paper {
+      --bg-board: #ffffff;
+      --board-frame: #94a3b8;
+      --card-bg: #f8fafc;
+      --card-border: #cbd5e1;
+      --text-main: #0f172a;
+      --text-sub: #334155;
+      --chalk-yellow: #92400e;
+      --chalk-cyan: #0284c7;
+      --chalk-orange: #c2410c;
+      --chalk-green: #15803d;
+      --chalk-red: #b91c1c;
+      --highlight-bg: #fef3c7;
+      --section-box-bg: #f1f5f9;
+      --reaction-bg: #e2e8f0;
+      --diagram-bg: #f8fafc;
+      --table-th-bg: #e2e8f0;
+      --box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+      --ext-card-bg: #f5f3ff;
+      --ext-card-border: #c7d2fe;
+      --ext-title: #4338ca;
+      --ext-badge-bg: #ede9fe;
+      --ext-badge-border: #6366f1;
+      --ext-inner-box: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; overflow-x: hidden; }
+
+    body {
+      background-color: #08100c;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text-main);
+      padding: 8px;
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-wrap: pretty;
+    }
+
+    body.theme-paper { background-color: #e2e8f0; }
+
+    .toolbar {
+      width: 100%;
+      max-width: 1440px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 10px 16px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body.theme-paper .toolbar {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .toolbar-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-tag {
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .toolbar-title { font-weight: 700; font-size: 0.88rem; }
+
+    .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    @media (max-width: 720px) {
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    }
+
+    .btn {
+      padding: 7px 14px;
+      font-size: 0.86rem;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-main);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-primary { background: #2563eb !important; color: #ffffff !important; border-color: #3b82f6 !important; }
+
+    .board-container {
+      width: 100%;
+      max-width: 1440px;
+      background-color: var(--bg-board);
+      border: 8px solid var(--board-frame);
+      border-radius: 14px;
+      box-shadow: var(--box-shadow);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 600px) { .board-container { border-width: 5px; padding: 8px; } }
+
+    .board-header {
+      text-align: center;
+      border-bottom: 2px dashed var(--card-border);
+      padding-bottom: 10px;
+    }
+
+    .main-title-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .board-header h1 {
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      letter-spacing: 1.5px;
+      color: var(--chalk-yellow);
+      font-weight: 900;
+    }
+
+    .badge-pill {
+      font-size: 0.78rem;
+      background: var(--highlight-bg);
+      color: var(--chalk-cyan);
+      padding: 3px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--chalk-cyan);
+      font-weight: 700;
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1400px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .board-grid { grid-template-columns: 1fr; } }
+
+    .col-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .col-title {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--chalk-yellow);
+      border-bottom: 2px solid var(--chalk-cyan);
+      padding-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .section-box {
+      background: var(--section-box-bg);
+      border-left: 3px solid var(--chalk-yellow);
+      padding: 9px;
+      border-radius: 5px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .sub-head {
+      font-weight: 900;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
+    }
+    body.theme-paper .sub-head { color: #1e293b; }
+
+    .reaction-box {
+      background: var(--reaction-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 9px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      letter-spacing: -0.4px;
+    }
+
+    .chem-eq-hero {
+      font-weight: 900;
+      color: var(--chalk-green);
+      font-size: clamp(0.85rem, 2.5vw, 0.98rem);
+      text-align: center;
+      padding: 5px 4px;
+      margin: 4px 0;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 6px;
+      border: 1px dashed var(--card-border);
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      letter-spacing: -0.4px;
+    }
+    .chem-eq-hero::-webkit-scrollbar { display: none; }
+
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0;
+      font-size: 0.78rem;
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      letter-spacing: -0.3px;
+    }
+    .role-table th, .role-table td {
+      padding: 4px 5px;
+      text-align: center;
+      border: 1px solid var(--card-border);
+    }
+    .role-table th { background: var(--table-th-bg); font-weight: 800; }
+
+    /* 金色發光特效樣式 */
+    .gold-glow {
+      background: rgba(253, 224, 71, 0.25) !important;
+      color: var(--chalk-yellow) !important;
+      font-weight: 900 !important;
+      text-shadow: 0 0 8px rgba(253, 224, 71, 0.8), 0 0 15px rgba(253, 224, 71, 0.5);
+      border: 1.5px solid var(--chalk-yellow) !important;
+      box-shadow: 0 0 10px rgba(253, 224, 71, 0.4);
+      animation: goldPulse 2s infinite alternate;
+    }
+
+    @keyframes goldPulse {
+      0% { box-shadow: 0 0 5px rgba(253, 224, 71, 0.4); }
+      100% { box-shadow: 0 0 14px rgba(253, 224, 71, 0.8); }
+    }
+
+    .note-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--highlight-bg);
+      color: var(--chalk-yellow);
+      font-size: 0.77rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .diagram-wrap {
+      width: 100%;
+      background: var(--diagram-bg);
+      border-radius: 8px;
+      padding: 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    /* 挖空模式 */
+    .cloze { transition: background-color 0.2s ease, color 0.2s ease; cursor: default; }
+    body.cloze-mode .cloze {
+      background: #334155 !important;
+      color: transparent !important;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin: 0 1px;
+      cursor: pointer !important;
+      user-select: none;
+      border: 1px dashed var(--chalk-yellow) !important;
+      display: inline-block;
+      vertical-align: baseline;
+      min-width: 1.5em;
+    }
+    body.cloze-mode.theme-paper .cloze { background: #cbd5e1 !important; border: 1px dashed #475569 !important; }
+    body.cloze-mode .cloze.revealed {
+      background: var(--highlight-bg) !important;
+      color: inherit !important;
+      border: 1px solid var(--chalk-green) !important;
+      cursor: pointer !important;
+    }
+
+    /* 測驗 Modal */
+    .quiz-modal {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      overflow-y: auto;
+      padding: 16px 8px;
+    }
+    .quiz-modal.active { display: flex; justify-content: center; align-items: flex-start; }
+    .quiz-card-container {
+      background: #0f172a; border: 2px solid #334155; border-radius: 12px;
+      width: 100%; max-width: 860px; color: #f8fafc; padding: 16px; margin: auto;
+      display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    body.theme-paper .quiz-card-container { background: #ffffff; color: #0f172a; border-color: #cbd5e1; }
+    .quiz-header {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 2px solid #475569; padding-bottom: 10px;
+    }
+    .quiz-stats-bar {
+      display: flex; justify-content: space-between;
+      background: rgba(255,255,255,0.06); padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; align-items: center;
+    }
+    body.theme-paper .quiz-stats-bar { background: #f1f5f9; }
+    .question-block {
+      background: rgba(255,255,255,0.03); border: 1px solid #334155; border-radius: 8px;
+      padding: 12px; display: flex; flex-direction: column; gap: 8px;
+    }
+    body.theme-paper .question-block { background: #f8fafc; border-color: #e2e8f0; }
+    .q-badge { font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; background: #3b82f6; color: #fff; width: fit-content; }
+    .option-list { display: flex; flex-direction: column; gap: 6px; }
+    .opt-btn {
+      text-align: left; padding: 8px 12px; border-radius: 6px;
+      background: rgba(255,255,255,0.05); border: 1px solid #475569; color: inherit; cursor: pointer; font-size: 0.85rem;
+      transition: all 0.15s;
+    }
+    body.theme-paper .opt-btn { background: #ffffff; border-color: #cbd5e1; }
+    .opt-btn.correct { background: #14532d !important; border-color: #22c55e !important; color: #86efac !important; font-weight: bold; }
+    body.theme-paper .opt-btn.correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #15803d !important; }
+    .opt-btn.wrong { background: #7f1d1d !important; border-color: #ef4444 !important; color: #fca5a5 !important; font-weight: bold; }
+    body.theme-paper .opt-btn.wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; }
+    .expl-box {
+      margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.3);
+      border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 0.82rem; display: none; line-height: 1.5;
+    }
+    body.theme-paper .expl-box { background: #f1f5f9; }
+    .expl-box.show { display: block; }
+
+    .footer {
+      text-align: center; padding: 14px 0 6px 0; border-top: 1px dashed var(--card-border);
+      font-size: 0.8rem; color: var(--text-sub); display: flex; flex-direction: column; gap: 4px; align-items: center;
+    }
+    .footer-copyright { font-weight: 800; color: var(--chalk-yellow); letter-spacing: 1px; }
+
+    @media print {
+      .toolbar, .quiz-modal { display: none !important; }
+      body { background: #ffffff !important; padding: 0 !important; }
+      .board-container { border: none !important; box-shadow: none !important; max-width: 100% !important; }
+      @page { size: A4 landscape; margin: 5mm; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 控制工具列 -->
+  <div class="toolbar">
+    <div class="toolbar-title-wrap">
+      <span class="brand-tag">展氏新解</span>
+      <span class="toolbar-title">酸鹼平衡計算全攻略：多元酸、鹼性計算與共軛酸鹼對</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="openQuiz()">📝 進入隨堂測驗</button>
+      <button class="btn" onclick="toggleTheme()">🎨 切換黑板/紙本模式</button>
+      <button class="btn" onclick="toggleCloze()">✏️ 課堂挖空複習</button>
+      <button class="btn" onclick="window.print()">🖨️ 列印 A4 講義</button>
+    </div>
+  </div>
+
+  <div class="board-container">
+    
+    <!-- 頂部黑板標題 -->
+    <div class="board-header">
+      <div class="main-title-wrap">
+        <span class="brand-tag" style="font-size:0.95rem; padding:3px 8px;">展氏新解</span>
+        <h1>酸鹼平衡計算全攻略：多元酸、鹼性計算與共軛酸鹼對</h1>
+        <span class="badge-pill">強鹼與難溶鹼 · 氨水微觀結構 · 酸鹼公式對比 · 共軛酸鹼對 $K_a \cdot K_b = 10^{-14}$</span>
+      </div>
+    </div>
+
+    <!-- 八大核心欄位 (前四欄多元酸與一元弱酸 + 後四欄鹼性計算與共軛酸鹼對) -->
+    <div class="board-grid">
+
+      <!-- 欄位一：一元酸計算複習 (CH3COOH) -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>一、一元酸計算複習</span>
+          <span style="font-size:0.75rem; opacity:0.8;">CH<sub>3</sub>COOH 解離實戰</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head">1. 口訣複習與基礎常常數</div>
+          <div style="background: rgba(253,224,71,0.1); border: 1px dashed var(--chalk-yellow); padding: 5px; border-radius: 4px; margin-bottom: 6px; font-size: 0.78rem;">
+            🎯 <b>上次口訣複習</b>：<br>
+            • 計算 [H<sup>+</sup>] 採 → <b style="color:var(--chalk-yellow);">「氫乘」</b> [H<sup>+</sup>]＝√(<i>c</i>·<i>K</i><sub>a</sub>)<br>
+            • 計算解離度採 → <b style="color:var(--chalk-cyan);">「趴下C」</b> α%＝√(<i>K</i><sub>a</sub>/<i>c</i>)
+          </div>
+
+          <div class="chem-eq-hero">
+            CH<sub>3</sub>COOH ⇌ CH<sub>3</sub>COO<sup>-</sup> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub> ＝ <span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-5</sup></span>
+          </div>
+          <div style="font-size:0.8rem; margin-top:4px; letter-spacing:-0.3px;">
+            • <b>已知 0.1 M 醋酸 <i>K</i><sub>a</sub> ＝ 10<sup>-5</sup>，則水中 [H<sup>+</sup>] ＝ ？</b><br>
+            [H<sup>+</sup>] ＝ <span class="cloze" style="color:var(--chalk-cyan);">√(<i>c</i> · <i>K</i><sub>a</sub>) ＝ √(0.1 × 10<sup>-5</sup>) ＝ 10<sup>-3</sup> M</span><br>
+            • <b>承上題，則 0.1 M 醋酸的解離度% ＝ ？（雙方法對比）</b>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px;">
+              <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--card-border); border-radius: 4px; padding: 5px; text-align: center;">
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--chalk-cyan);">方法1（趴下C）</div>
+                <div style="font-size: 0.73rem; color: var(--chalk-yellow); margin-top: 2px;">
+                  α ＝ √(<i>K</i><sub>a</sub> / <i>c</i>)<br>
+                  ＝ √(10<sup>-5</sup> / 0.1)<br>
+                  ＝ √(10<sup>-4</sup>) ＝ <span class="cloze" style="font-weight:bold;">1%</span>
+                </div>
+              </div>
+              <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--card-border); border-radius: 4px; padding: 5px; text-align: center;">
+                <div style="font-size: 0.7rem; font-weight: 800; color: var(--chalk-green);">方法2（定義法）</div>
+                <div style="font-size: 0.73rem; color: var(--chalk-green); margin-top: 2px;">
+                  α ＝ ([H<sup>+</sup>] / [HA]<sub>0</sub>)×100%<br>
+                  ＝ (10<sup>-3</sup> / 0.1)×100%<br>
+                  ＝ <span class="cloze" style="font-weight:bold;">1%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="diagram-wrap">
+          <div style="font-size: 0.78rem; font-weight: 800; color: var(--chalk-cyan); margin-bottom: 6px; text-align: center;">
+            【微觀濃度對比】：0.1 M 醋酸 vs 強酸
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+            <div style="background: rgba(248,113,113,0.12); border: 1.2px solid #f87171; border-radius: 6px; padding: 6px; text-align: center;">
+              <div style="font-size: 0.78rem; font-weight: 900; color: #f87171;">強酸 HCl (0.1M)</div>
+              <div style="font-size: 0.75rem; font-weight: 800; color: var(--chalk-yellow); margin-top: 3px;">[H<sup>+</sup>] ＝ 0.1 M</div>
+              <div style="font-size: 0.73rem; font-weight: 800; color: var(--chalk-cyan); margin-top: 2px;">α ＝ 100% (完全)</div>
+            </div>
+            <div style="background: rgba(56,189,248,0.12); border: 1.2px solid #38bdf8; border-radius: 6px; padding: 6px; text-align: center;">
+              <div style="font-size: 0.78rem; font-weight: 900; color: #38bdf8;">弱酸 (0.1M)</div>
+              <div style="font-size: 0.75rem; font-weight: 800; color: var(--chalk-yellow); margin-top: 3px;">[H<sup>+</sup>] ＝ 10<sup>-3</sup> M</div>
+              <div style="font-size: 0.73rem; font-weight: 800; color: var(--chalk-green); margin-top: 2px;">α ＝ 1% (部分)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥重點：同濃度的弱酸與強酸，弱酸 [H<sup>+</sup>] 遠小於強酸！
+        </div>
+      </div>
+
+      <!-- 欄位二：未知酸 Ka 與濃度計算範例 -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>二、未知酸 <i>K</i><sub>a</sub> 與濃度計算</span>
+          <span style="font-size:0.75rem; opacity:0.8;">pH 反推 <i>K</i><sub>a</sub> 實戰</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head" style="color: var(--chalk-orange);">1. 典型範例：pH 反推 <i>K</i><sub>a</sub></div>
+          <div style="background: rgba(0,0,0,0.3); border-left: 2px solid var(--chalk-orange); padding: 5px; border-radius: 4px; margin-bottom: 6px; font-size: 0.78rem;">
+            📋 <b>【例題】</b>：某一元弱酸在 <span style="color:var(--chalk-yellow);">0.1 M</span> 時，測得 <span style="color:var(--chalk-cyan);">pH ＝ 2.0</span>。試求此弱酸的解離常數 <i>K</i><sub>a</sub>？
+          </div>
+
+          <div style="font-size:0.8rem; line-height:1.55; letter-spacing:-0.3px;">
+            • <b>解析步驟</b>：<br>
+            由 pH ＝ 2.0 知 [H<sup>+</sup>] ＝ 10<sup>-2</sup> M。<br>
+            代入公式：<br>
+            <div style="background:rgba(0,0,0,0.3); padding:5px; border-radius:4px; font-family:monospace; margin-top:4px; color:var(--chalk-green); font-size:0.76rem; line-height:1.6;">
+              [H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>)<br>
+              10<sup>-2</sup> ＝ √(0.1 · <i>K</i><sub>a</sub>)<br>
+              (10<sup>-2</sup>)<sup>2</sup> ＝ 0.1 × <i>K</i><sub>a</sub><br>
+              10<sup>-4</sup> ＝ 0.1 × <i>K</i><sub>a</sub><br>
+              ⇒ <i>K</i><sub>a</sub> ＝ 10<sup>-4</sup> / 0.1 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-3</sup></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-orange); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-orange);">
+            2. 濃度改變推算範例（兩種解法）
+          </div>
+          <div style="font-size:0.78rem; color:var(--chalk-yellow); margin-bottom: 4px; background: rgba(253,224,71,0.12); padding: 3px 5px; border-radius: 3px;">
+            ⚠️ <b>關鍵觀念</b>：同一種酸的 <i>K</i><sub>a</sub> 絕不會受到濃度改變而影響，故此題繼續沿用前一題的 <b><i>K</i><sub>a</sub> ＝ 10<sup>-3</sup></b>！
+          </div>
+          <div style="font-size:0.8rem; line-height:1.55;">
+            • 若改將此弱酸配成 <span class="cloze" style="color:var(--chalk-yellow);">0.2 M</span>，其 pH 為何？<br>
+            
+            <div style="margin-top: 5px; background: rgba(30, 64, 175, 0.25); border: 1.5px solid #38bdf8; padding: 6px; border-radius: 6px;">
+              <div style="font-weight:800; color:#7dd3fc; font-size:0.78rem;">方法一（先求 [H<sup>+</sup>] 再用 <i>b</i> － log <i>a</i>）</div>
+              <div style="font-family:monospace; margin-top:3px; font-size: 0.77rem; line-height: 1.5;">
+                [H<sup>+</sup>] ＝ √(0.2 × 10<sup>-3</sup>)<br>
+                　　 ＝ √(2 × 10<sup>-4</sup>)<br>
+                　　 ＝ <span style="color:var(--chalk-green);">√2 × 10<sup>-2</sup> M</span><br>
+                💡 <i>複習：若 [H<sup>+</sup>] ＝ a × 10<sup>-b</sup>，則 pH ＝ b － log a</i><br>
+                pH ＝ －log(√2 × 10<sup>-2</sup>)<br>
+                　 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">2 － ½log 2 ≈ 1.85</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 6px; background: rgba(22, 101, 52, 0.25); border: 1.5px solid #22c55e; padding: 6px; border-radius: 6px;">
+              <div style="font-weight:800; color:#86efac; font-size:0.78rem;">方法二（根號直接提出法）</div>
+              <div style="font-family:monospace; margin-top:3px; font-size: 0.77rem; line-height: 1.5;">
+                [H<sup>+</sup>] ＝ <span style="color:var(--chalk-cyan);">√(0.2 × 10<sup>-3</sup>)</span><br>
+                　　 ＝ √(2 × 10<sup>-4</sup>)<br>
+                pH ＝ －log(2 × 10<sup>-4</sup>)<sup>½</sup><br>
+                　 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">½ [ －log(2 × 10<sup>-4</sup>) ]</span><br>
+                　 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">½ ( 4 － log 2 )</span><br>
+                　 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">½ ( 4 － 0.3 )</span> &nbsp;&nbsp; <i>(已知 log 2 = 0.3)</i><br>
+                　 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">½ × 3.7 &nbsp;＝ &nbsp;1.85</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          💡 展哥口訣：先由 pH 求 [H<sup>+</sup>]，再代入 [H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>) 破解！
+        </div>
+      </div>
+
+      <!-- 欄位三：多元酸：硫酸 (H2SO4) 分段解離與計算陷阱 -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>三、多元酸：硫酸 (H<sub>2</sub>SO<sub>4</sub>)</span>
+          <span style="font-size:0.75rem; opacity:0.8;">1M 硫酸 [H<sup>+</sup>] 計算陷阱</span>
+        </div>
+
+        <div class="section-box" style="border-left-color: var(--chalk-yellow);">
+          <div class="sub-head" style="color:var(--chalk-yellow);">📋 核心問題</div>
+          <div style="font-size: 0.81rem; line-height: 1.55; font-weight: bold; color: var(--chalk-cyan);">
+            請問 1 M 硫酸的水溶液中 [H<sup>+</sup>] ＝ ？
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-red); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-red);">
+            ⚠️ 經典陷阱（錯誤直覺）
+          </div>
+          <div style="font-size:0.79rem; line-height:1.5;">
+            • 直接把硫酸當成二元酸去計算直式 ICE 表格，硫酸 H<sub>2</sub>SO<sub>4</sub> 直接一次完全解離產生 2 個 H<sup>+</sup> 以及 SO<sub>4</sub><sup>2-</sup>：<br>
+            <div style="text-align:center; color:var(--chalk-yellow); margin:3px 0; font-weight:bold;">
+              H<sub>2</sub>SO<sub>4</sub> → 2H<sup>+</sup> ＋ SO<sub>4</sub><sup>2-</sup>
+            </div>
+            • <b>直式 ICE 計算</b>：<br>
+            <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
+              <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>H<sub>2</sub>SO<sub>4</sub></th><th>2H<sup>+</sup></th><th>SO<sub>4</sub><sup>2-</sup></th></tr>
+              <tr><td><b>初 (I)</b></td><td>1 M</td><td>0 M</td><td>0 M</td></tr>
+              <tr style="border-bottom: 2px solid var(--chalk-red);"><td><b>變 (C)</b></td><td>－1 M</td><td>＋2 M</td><td>＋1 M</td></tr>
+              <tr><td><b>平 (E)</b></td><td>0 M</td><td>2 M</td><td>1 M</td></tr>
+            </table>
+            <div style="text-align:center; color:var(--chalk-red); font-weight:bold; margin-top:3px;">
+              誤以為 [H<sup>+</sup>] ＝ 2 M（❌ 錯誤！）
+            </div>
+          </div>
+        </div>
+
+        <div class="section-box" style="border-left-color: var(--chalk-green);">
+          <div class="sub-head" style="color:var(--chalk-green);">✅ 正確觀念：分段解離（第 1 段）</div>
+          <div style="font-size:0.8rem; line-height:1.55; letter-spacing:-0.3px;">
+            • 第一段先完全解離 1 個 H<sup>+</sup>（<i>K</i><sub>a1</sub> ＝ ∞）：<br>
+            <div class="chem-eq-hero" style="font-size:0.73rem; color:var(--chalk-green); margin:2px 0;">
+              H<sub>2</sub>SO<sub>4</sub> → HSO<sub>4</sub><sup>-</sup> ＋ H<sup>+</sup> , <i>K</i><sub>a1</sub> ＝ ∞
+            </div>
+            • <b>直式 ICE 計算</b>（平 E 狀態產生 <span class="gold-glow" style="padding: 1px 4px; border-radius: 3px; display: inline-block;">1 M</span> 氫離子）：<br>
+            <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
+              <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>H<sub>2</sub>SO<sub>4</sub></th><th>HSO<sub>4</sub><sup>-</sup></th><th>H<sup>+</sup></th></tr>
+              <tr><td><b>初 (I)</b></td><td>1 M</td><td>0 M</td><td>0 M</td></tr>
+              <tr style="border-bottom: 2px solid var(--chalk-green);"><td><b>變 (C)</b></td><td>－1 M</td><td>＋1 M</td><td>＋1 M</td></tr>
+              <tr><td><b>平 (E)</b></td><td>0 M</td><td>1 M</td><td><span class="gold-glow" style="padding: 1px 6px; border-radius: 3px; display: inline-block;">1 M</span></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-cyan);">
+            • 第 2 段解離（弱酸，考慮共同離子效應）：
+          </div>
+          <div style="font-size:0.79rem; line-height:1.5;">
+            <div class="chem-eq-hero" style="font-size:0.74rem; color:var(--chalk-cyan); margin:2px 0;">
+              HSO<sub>4</sub><sup>-</sup> ⇌ H<sup>+</sup> ＋ SO<sub>4</sub><sup>2-</sup> , <i>K</i><sub>a2</sub> ＝ 10<sup>-2</sup>
+            </div>
+            • <b>微觀平衡直式 ICE 表格</b>（H<sup>+</sup> 初始已有 <span class="gold-glow" style="padding: 1px 4px; border-radius: 3px; display: inline-block;">1 M</span>）：<br>
+            <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
+              <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>HSO<sub>4</sub><sup>-</sup></th><th>H<sup>+</sup></th><th>SO<sub>4</sub><sup>2-</sup></th></tr>
+              <tr><td><b>初 (I)</b></td><td>1 M</td><td><span class="gold-glow" style="padding: 1px 6px; border-radius: 3px; display: inline-block;">1 M</span></td><td>0 M</td></tr>
+              <tr style="border-bottom: 2px solid var(--chalk-cyan);"><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋<i>x</i></td></tr>
+              <tr><td><b>平 (E)</b></td><td>1 － <i>x</i></td><td>1 ＋ <i>x</i></td><td><i>x</i></td></tr>
+            </table>
+            
+            <div style="margin-top: 6px; font-weight: bold; color: var(--chalk-yellow);">• 求解的部分分成兩種方法：</div>
+
+            <div style="margin-top: 4px; background: rgba(30, 64, 175, 0.25); border: 1.5px solid #38bdf8; padding: 6px; border-radius: 6px;">
+              <div style="font-weight:800; color:#7dd3fc; font-size:0.76rem;">方法一（精確公式解）</div>
+              <div style="font-family:monospace; margin-top:2px; font-size: 0.72rem; line-height: 1.4;">
+                <i>K</i><sub>a2</sub> ＝ (1 ＋ <i>x</i>)<i>x</i> / (1 － <i>x</i>) ＝ 10<sup>-2</sup><br>
+                ⇒ <i>x</i><sup>2</sup> ＋ 1.01<i>x</i> － 0.01 ＝ 0<br>
+                解得 <i>x</i> ≈ 0.01 M<br>
+                故 [H<sup>+</sup>] ＝ 1 ＋ <i>x</i> ＝ 1.01 M
+              </div>
+            </div>
+
+            <div style="margin-top: 6px; background: rgba(180, 83, 9, 0.3); border: 2px solid var(--chalk-yellow); padding: 6px; border-radius: 6px; box-shadow: 0 0 10px rgba(253, 224, 71, 0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-weight:900; color:var(--chalk-yellow); font-size:0.78rem;">⭐ 方法二（展哥推薦：快速近似解）</span>
+                <span style="background:var(--chalk-yellow); color:#000; font-size:0.65rem; font-weight:900; padding:1px 5px; border-radius:3px;">🔥 推薦必學</span>
+              </div>
+              <div style="font-family:monospace; margin-top:2px; font-size: 0.72rem; line-height: 1.4; color: #f8fafc;">
+                令分子 1 ＋ <i>x</i> ≈ 1，分母 1 － <i>x</i> ≈ 1<br>
+                <i>K</i><sub>a2</sub> ＝ <span style="color:var(--chalk-cyan);">(1 · <i>x</i>) / 1</span> ＝ 10<sup>-2</sup><br>
+                ⇒ <b><i>x</i> ＝ 10<sup>-2</sup> ＝ 0.01 M</b><br>
+                故 [H<sup>+</sup>] ＝ 1 ＋ <i>x</i> ＝ <span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">1.01 M</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥結論：硫酸在水中比較像只解離 1 個 H<sup>+</sup>！
+        </div>
+      </div>
+
+      <!-- 欄位四：亞硫酸 (H2SO3) 的兩段解離與近似技巧 -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>四、亞硫酸 (H<sub>2</sub>SO<sub>3</sub>) 近似技巧</span>
+          <span style="font-size:0.75rem; opacity:0.8;">視為一元酸 (代入 <i>K</i><sub>a1</sub>)</span>
+        </div>
+
+        <div class="section-box" style="border-left-color: var(--chalk-yellow);">
+          <div class="sub-head" style="color:var(--chalk-yellow);">📋 核心問題</div>
+          <div style="font-size: 0.81rem; line-height: 1.55; font-weight: bold; color: var(--chalk-cyan);">
+            請問 1 M 亞硫酸的水溶液中 [H<sup>+</sup>] ＝ ？；[SO<sub>3</sub><sup>2-</sup>] ＝ ？<br>
+            <span style="font-size:0.75rem; color:var(--text-sub);">(已知 K<sub>a1</sub>＝10<sup>-2</sup>，K<sub>a2</sub>＝10<sup>-8</sup>)</span>
+          </div>
+        </div>
+
+        <div class="section-box" style="border-left-color: var(--chalk-cyan);">
+          <div class="sub-head" style="color:var(--chalk-cyan);">1. 由亞硫酸的兩段解離常數求 [H<sup>+</sup>]</div>
+          <div style="font-size:0.8rem; line-height:1.55; letter-spacing:-0.3px;">
+            • <b>核心簡化技巧</b>：因 <span style="color:var(--chalk-yellow); font-weight:bold;"><i>K</i><sub>a1</sub> ≫ <i>K</i><sub>a2</sub></span>，第 2 段產生的氫離子可完全忽略！<br>
+            • <b>計算方式</b>：直接視為一元弱酸代入 <i>K</i><sub>a1</sub>：
+            <div class="chem-eq-hero" style="font-size:0.78rem; color:var(--chalk-green); margin:3px 0; font-family:monospace; text-align:left; padding:6px 12px;">
+              [H<sup>+</sup>]＝ √(c · K<sub>a1</sub>) ＝ √(1 × 10<sup>-2</sup>) ＝ 0.1 M
+            </div>
+          </div>
+        </div>
+
+        <div class="section-box" style="border-left-color: var(--chalk-cyan);">
+          <div class="sub-head" style="color:var(--chalk-cyan);">2. 速解第二酸根濃度 [SO<sub>3</sub><sup>2-</sup>] ＝ ？</div>
+          <div style="font-size:0.8rem; line-height:1.55; letter-spacing:-0.3px;">
+            • <b>共同離子效應與上下代數互消</b>：<br>
+            第 2 段平衡式：<br>
+            <i>K</i><sub>a2</sub> ＝ ([H<sup>+</sup>][SO<sub>3</sub><sup>2-</sup>]) / [HSO<sub>3</sub><sup>-</sup>]<br>
+            因第一段解離產生的 [H<sup>+</sup>] 與 [HSO<sub>3</sub><sup>-</sup>] 相等並上下互消：<br>
+            <div class="chem-eq-hero" style="font-size:0.78rem; color:var(--chalk-cyan); margin:3px 0; font-family:monospace;">
+              <i>K</i><sub>a2</sub> ≈ [SO<sub>3</sub><sup>2-</sup>] ＝ 10<sup>-8</sup> M
+            </div>
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center; line-height: 1.5; padding: 6px 8px; margin-top: 8px;">
+          📌 <b>展哥結論</b>：亞硫酸水溶液中的 [SO<sub>3</sub><sup>2-</sup>] 恆等於第二段解離常數 <i>K</i><sub>a2</sub>！
+        </div>
+
+      </div>
+
+      <!-- 欄位五：強鹼與難溶鹼計算 (NaOH 與 Mg(OH)2) [新加入板書模組] -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>五、鹼性的計算：強鹼與難溶鹼</span>
+          <span style="font-size:0.75rem; opacity:0.8;">NaOH 與 Mg(OH)<sub>2</sub> 實戰</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head" style="color: var(--chalk-yellow);">1. 強鹼：氫氧化鈉 (NaOH)</div>
+          <div class="chem-eq-hero" style="font-size:0.76rem; color:var(--chalk-green); margin:2px 0;">
+            NaOH → Na<sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub> ＝ ∞[span_0](start_span)[span_0](end_span)
+          </div>
+          <div style="font-size:0.8rem; margin-top:4px; line-height:1.5;">
+            • <b>1 M 的氫氧化鈉水溶液中 [OH<sup>-</sup>]</b>：<br>
+            因為強鹼 100% 完全解離，故：<br>
+            <span style="color:var(--chalk-yellow); font-weight:bold;">[OH<sup>-</sup>] ＝ 1 M</span>[span_1](start_span)[span_1](end_span)
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-cyan);">
+            2. 難溶強鹼：氫氧化鎂 Mg(OH)<sub>2</sub>
+          </div>
+          <div class="chem-eq-hero" style="font-size:0.74rem; color:var(--chalk-cyan); margin:2px 0;">
+            Mg(OH)<sub>2(s)</sub> ⇌ Mg<sup>2+</sup> ＋ 2OH<sup>-</sup> , <i>K</i><sub>b</sub> ＝ 10<sup>-11</sup>[span_2](start_span)[span_2](end_span)
+          </div>
+          • <b>微觀 ICE 溶解平衡表</b>[span_3](start_span)[span_3](end_span)：<br>
+          <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
+            <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>Mg(OH)<sub>2(s)</sub></th><th>Mg<sup>2+</sup></th><th>2OH<sup>-</sup></th></tr>
+            <tr><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋2<i>x</i></td></tr>
+            <tr><td><b>平 (E)</b></td><td>約固體</td><td><i>x</i></td><td>2<i>x</i></td></tr>
+          </table>
+          <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
+            • <i>K</i><sub>b</sub> 表達式與求解[span_4](start_span)[span_4](end_span)：<br>
+            <div style="font-family:monospace; color:var(--chalk-yellow); font-size:0.74rem;">
+              <i>K</i><sub>b</sub> ＝ ([Mg<sup>2+</sup>][OH<sup>-</sup>]<sup>2</sup>) / [Mg(OH)<sub>2(s)</sub>]<br>
+              10<sup>-11</sup> ＝ <span class="cloze" style="font-weight:bold;"><i>x</i> · (2<i>x</i>)<sup>2</sup> / 1 ＝ 4<i>x</i><sup>3</sup></span>
+            </div>
+            • 飽和溶液中 [OH<sup>-</sup>] ＝ <span style="color:var(--chalk-green); font-weight:bold;">2<i>x</i></span>[span_5](start_span)[span_5](end_span)
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥重點：難溶鹼的 [OH<sup>-</sup>] 需透過溶度積常數 <i>K</i><sub>b</sub> 嚴格建立解離 ICE 求解！
+        </div>
+      </div>
+
+      <!-- 欄位六：非含氧鹼：氨水 (NH3·H2O) 微觀結構與平衡 [新加入板書模組] -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>六、非含氧鹼：氨水 (NH<sub>3</sub>)</span>
+          <span style="font-size:0.75rem; opacity:0.8;">微觀水合與 <i>K</i><sub>b</sub> 計算</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head" style="color:var(--chalk-yellow);">1. 氨水的微觀結構與水合歷程</div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 5px; border-radius: 4px; margin-bottom: 6px; font-size: 0.77rem; text-align:center; font-family:monospace;">
+            NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup>[span_6](start_span)[span_6](end_span)
+          </div>
+          <div style="font-size:0.8rem; line-height:1.5;">
+            • <b>巨觀微觀對比量化觀念</b>：<br>
+            <span style="color:var(--chalk-yellow); font-weight:bold;">「每 100 個 NH<sub>3</sub> 中，就有 1 個形成 NH<sub>4</sub>OH」</span>[span_7](start_span)[span_7](end_span)<br>
+            顯示弱鹼在水中的解離比例極低（部分解離）。
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-orange); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-orange);">
+            2. 0.1 M 氨水的解離計算
+          </div>
+          <div class="chem-eq-hero" style="font-size:0.74rem; color:var(--chalk-orange); margin:2px 0;">
+            NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub> ≈ 10<sup>-5</sup>[span_8](start_span)[span_8](end_span)
+          </div>
+          • <b>平衡 ICE 表格</b>[span_9](start_span)[span_9](end_span)：<br>
+          <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
+            <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>NH<sub>3</sub></th><th>NH<sub>4</sub><sup>+</sup></th><th>OH<sup>-</sup></th></tr>
+            <tr><td><b>初 (I)</b></td><td><i>c</i> (0.1 M)</td><td>0 M</td><td>0 M</td></tr>
+            <tr style="border-bottom: 2px solid var(--chalk-orange);"><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋<i>x</i></td></tr>
+            <tr><td><b>平 (E)</b></td><td><i>c</i> － <i>x</i></td><td><i>x</i></td><td><i>x</i></td></tr>
+          </table>
+          <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
+            • 近似解與公式代入[span_10](start_span)[span_10](end_span)：<br>
+            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem;">
+              <i>K</i><sub>b</sub> ＝ <i>x</i><sup>2</sup> / (<i>c</i> － <i>x</i>) ≈ <i>x</i><sup>2</sup> / <i>c</i> ＝ 10<sup>-5</sup><br>
+              ⇒ [OH<sup>-</sup>] ＝ <i>x</i> ＝ √(<i>c</i> · <i>K</i><sub>b</sub>) ＝ √(0.1 × 10<sup>-5</sup>) ＝ <span class="cloze" style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-3</sup> M</span>[span_11](start_span)[span_11](end_span)
+            </div>
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          💡 展哥口訣：計算弱鹼 [OH<sup>-</sup>] 採「氧乘」 [OH<sup>-</sup>]＝√(<i>c</i>·<i>K</i><sub>b</sub>)！
+        </div>
+      </div>
+
+      <!-- 欄位七：酸鹼性公式對比與 pH/pOH 換算 [新加入板書模組] -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>七、酸鹼性公式對比與 pH 計算</span>
+          <span style="font-size:0.75rem; opacity:0.8;">酸性與鹼性公式對稱性</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head" style="color:var(--chalk-yellow);">1. 酸性與鹼性公式全對比</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+            <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--card-border); border-radius: 4px; padding: 6px;">
+              <div style="font-size: 0.75rem; font-weight: 800; color: var(--chalk-cyan); text-align:center;">🔴 酸性公式</div>
+              <div style="font-size: 0.74rem; font-family:monospace; color: var(--chalk-yellow); margin-top: 4px; text-align:center;">
+                [H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>)<br>
+                α ＝ √(<i>K</i><sub>a</sub> / <i>c</i>)[span_12](start_span)[span_12](end_span)
+              </div>
+            </div>
+            <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--card-border); border-radius: 4px; padding: 6px;">
+              <div style="font-size: 0.75rem; font-weight: 800; color: var(--chalk-green); text-align:center;">🔵 鹼性公式</div>
+              <div style="font-size: 0.74rem; font-family:monospace; color: var(--chalk-green); margin-top: 4px; text-align:center;">
+                [OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>)<br>
+                α ＝ √(<i>K</i><sub>b</sub> / <i>c</i>)[span_13](start_span)[span_13](end_span)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-yellow); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-yellow);">
+            2. pH 與 pOH 換算與經典範例
+          </div>
+          <div style="font-size:0.79rem; line-height:1.5;">
+            • <b>核心關係式</b>：<br>
+            <div style="text-align:center; color:var(--chalk-yellow); font-weight:bold; margin:2px 0;">
+              pH ＋ pOH ＝ 14 &nbsp;⇒&nbsp; pH ＝ 14 － pOH[span_14](start_span)[span_14](end_span)
+            </div>
+            • <b>【例題】請問 0.1 M NH<sub>3</sub> 水中的 pH 為何？</b>[span_15](start_span)[span_15](end_span)<br>
+            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.75rem; margin-top:3px; background:rgba(0,0,0,0.3); padding:5px; border-radius:4px;">
+              ① 求 [OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>) ＝ √(0.1 × 10<sup>-5</sup>) ＝ 10<sup>-3</sup> M[span_16](start_span)[span_16](end_span)<br>
+              ② 求 pOH ＝ －log(10<sup>-3</sup>) ＝ 3[span_17](start_span)[span_17](end_span)<br>
+              ③ 求 pH ＝ 14 － pOH ＝ 14 － 3 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">11</span>[span_18](start_span)[span_18](end_span)
+            </div>
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥口訣：算鹼性先求 [OH<sup>-</sup>] 再求 pOH，最後用 14 減掉即得 pH！
+        </div>
+      </div>
+
+      <!-- 欄位八：共軛酸鹼對的常數關係 Ka·Kb = 10^-14 [新加入板書模組] -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>八、共軛酸鹼對 <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> 關係</span>
+          <span style="font-size:0.75rem; opacity:0.8;">常數積 10<sup>-14</sup> 證明與計算</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head" style="color:var(--chalk-yellow);">1. 共軛酸鹼對常數關係推導</div>
+          <div style="font-size:0.8rem; line-height:1.5; letter-spacing:-0.3px;">
+            以銨根與氨 $\text{NH}_4^+ / \text{NH}_3$ 為例[span_19](start_span)[span_19](end_span)：<br>
+            • 酸 $\text{NH}_4^+$ 解離：<br>
+            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.72rem; text-align:center; margin:2px 0;">
+              NH<sub>4</sub><sup>+</sup> ⇌ NH<sub>3</sub> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub>[span_20](start_span)[span_20](end_span)
+            </div>
+            • 鹼 $\text{NH}_3$ 水解：<br>
+            <div style="font-family:monospace; color:var(--chalk-green); font-size:0.72rem; text-align:center; margin:2px 0;">
+              NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub>[span_21](start_span)[span_21](end_span)
+            </div>
+            • <b>兩式相加（水的自解離平衡）</b>：<br>
+            <div style="font-family:monospace; color:var(--chalk-yellow); font-size:0.73rem; text-align:center; margin:2px 0;">
+              H<sub>2</sub>O ⇌ H<sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>w</sub> ＝ <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup>[span_22](start_span)[span_22](end_span)
+            </div>
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-green); letter-spacing:-0.3px;">
+          <div class="sub-head" style="color:var(--chalk-green);">
+            2. 實戰演練：0.1 M NH<sub>4</sub><sup>+</sup> 的 pH 計算
+          </div>
+          <div style="font-size:0.79rem; line-height:1.5;">
+            • <b>【例題】請問 0.1 M NH<sub>4</sub><sup>+</sup> 水中的 pH 為何？（已知 NH<sub>3</sub> 的 <i>K</i><sub>b</sub> ＝ 10<sup>-5</sup>）</b>[span_23](start_span)[span_23](end_span)<br>
+            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin-top:3px; background:rgba(0,0,0,0.3); padding:5px; border-radius:4px;">
+              ① 先求共軛酸的 <i>K</i><sub>a</sub>：<br>
+              <i>K</i><sub>a</sub> ＝ 10<sup>-14</sup> / <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup> / 10<sup>-5</sup> ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-9</sup></span>[span_24](start_span)[span_24](end_span)<br>
+              ② 計算 [H<sup>+</sup>]：<br>
+              [H<sup>+</sup>] ＝ √(0.1 × <i>K</i><sub>a</sub>) ＝ √(0.1 × 10<sup>-9</sup>) ＝ √(10<sup>-10</sup>) ＝ <span style="color:var(--chalk-green); font-weight:bold;">10<sup>-5</sup> M</span>[span_25](start_span)[span_25](end_span)<br>
+              ③ 計算 pH：<br>
+              pH ＝ －log(10<sup>-5</sup>) ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">5</span>[span_26](start_span)[span_26](end_span)
+            </div>
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥結論：共軛酸鹼對的 <i>K</i><sub>a</sub> 乘 <i>K</i><sub>b</sub> 恆等於 10<sup>-14</sup>，互換計算超級好用！
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 延伸思維專區 -->
+    <div class="extension-container" style="background: var(--ext-card-bg); border: 2px solid var(--ext-card-border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid var(--ext-badge-border); padding-bottom: 8px;">
+        <div style="font-size: 1.05rem; font-weight: 900; color: var(--ext-title); display: flex; align-items: center; gap: 8px;">
+          <span>🧠 【展氏新解】延伸思維：多元酸多重平衡與共軛酸鹼對的質子競逐</span>
+        </div>
+        <span style="font-size: 0.78rem; background: rgba(192,132,252,0.18); border: 1px solid #a855f7; color: var(--ext-title); padding: 2px 8px; border-radius: 20px; font-weight: 800;">多元質子平衡 · 質子守恆 · 亞硫酸深度進階</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+        
+        <div style="background: var(--ext-inner-box); border: 1px solid var(--card-border); border-radius: 8px; padding: 11px; font-size: 0.84rem;">
+          <div style="font-weight:800; color:var(--chalk-cyan); font-size:0.9rem; margin-bottom:4px;">
+            📌 A. 為什麼硫酸的第 2 段解離常數 <i>K</i><sub>a2</sub> 遠小於 <i>K</i><sub>a1</sub>？
+          </div>
+          <p style="font-size:0.81rem; color:var(--text-sub); line-height:1.55;">
+            硫酸分子 H<sub>2</sub>SO<sub>4</sub> 解離出第一個質子 H<sup>+</sup> 時，帶正電的質子要脫離帶負電的硫酸氫根 HSO<sub>4</sub><sup>-</sup>，庫侖吸引力極大故極易解離（強酸）。然而當要從 HSO<sub>4</sub><sup>-</sup> 再解離出第二個質子時，質子必須克服帶 -1 價的強烈負電荷吸引力，導致能量障壁陡增，故 <b><i>K</i><sub>a2</sub> ＝ 10<sup>-2</sup></b>，所以 <b>HSO<sub>4</sub><sup>-</sup></b> 表現出弱酸性質。
+          </p>
+        </div>
+
+        <div style="background: var(--ext-inner-box); border: 1px solid var(--card-border); border-radius: 8px; padding: 11px; font-size: 0.84rem;">
+          <div style="font-weight:800; color:var(--chalk-orange); font-size:0.9rem; margin-bottom:4px;">
+            📌 B. 多元弱酸溶液中的精確質量守恆與電荷守恆
+          </div>
+          <p style="font-size:0.81rem; color:var(--text-sub); line-height:1.55;">
+            以亞硫酸 H<sub>2</sub>SO<sub>3</sub> 為例，當溶液達到平衡時，其硫元素的總初始濃度滿足質量守恆：<br>
+            <div style="text-align:center; font-family:monospace; color:var(--chalk-yellow); margin:4px 0; font-size:0.78rem;">
+              [H<sub>2</sub>SO<sub>3</sub>]<sub>0</sub> ＝ [H<sub>2</sub>SO<sub>3</sub>] ＋ [HSO<sub>3</sub><sup>-</sup>] ＋ [SO<sub>3</sub><sup>2-</sup>]
+            </div>
+            同時溶液必須嚴格遵守電荷守恆定律（陰陽電荷平衡）：<br>
+            <div style="text-align:center; font-family:monospace; color:var(--chalk-green); margin:4px 0; font-size:0.78rem;">
+              [H<sup>+</sup>] ＝ [HSO<sub>3</sub><sup>-</sup>] ＋ 2[SO<sub>3</sub><sup>2-</sup>] ＋ [OH<sup>-</sup>]
+            </div>
+            當 <i>K</i><sub>a1</sub> ≫ <i>K</i><sub>a2</sub> 且濃度適中時，[SO<sub>3</sub><sup>2-</sup>] 與 [OH<sup>-</sup>] 均極微小，故可簡化為 [H<sup>+</sup>] ≈ [HSO<sub>3</sub><sup>-</sup>]！
+          </p>
+        </div>
+
+        <div style="background: var(--ext-inner-box); border: 1px solid var(--card-border); border-radius: 8px; padding: 11px; font-size: 0.84rem;">
+          <div style="font-weight:800; color:var(--chalk-yellow); font-size:0.9rem; margin-bottom:4px;">
+            📌 C. 亞硫酸水溶液中的亞硫酸根離子濃度 [SO<sub>3</sub><sup>2-</sup>] 近似等於 <i>K</i><sub>a2</sub>
+          </div>
+          <p style="font-size:0.81rem; color:var(--text-sub); line-height:1.55;">
+            觀察第二段解離平衡常數式：<br>
+            <div style="text-align:center; font-family:monospace; color:var(--chalk-yellow); margin:4px 0; font-size:0.78rem;">
+              <i>K</i><sub>a2</sub> ＝ ([H<sup>+</sup>][SO<sub>3</sub><sup>2-</sup>]) / [HSO<sub>3</sub><sup>-</sup>]
+            </div>
+            因為亞硫酸主要由第一段解離主導，使得溶液中的 [H<sup>+</sup>] 與 [HSO<sub>3</sub><sup>-</sup>] 幾乎相等，兩者在平衡式中上下互消！因此在數值上，亞硫酸水溶液中的亞硫酸根離子濃度恰好就近似於第二段解離常數：<br>
+            <div style="text-align:center; font-family:monospace; color:var(--chalk-green); margin:4px 0; font-size:0.78rem;">
+              [SO<sub>3</sub><sup>2-</sup>] ≈ <i>K</i><sub>a2</sub> ＝ 10<sup>-8</sup> M
+            </div>
+          </p>
+        </div>
+
+        <div style="background: var(--ext-inner-box); border: 1px solid var(--card-border); border-radius: 8px; padding: 11px; font-size: 0.84rem;">
+          <div style="font-weight:800; color:var(--chalk-green); font-size:0.9rem; margin-bottom:4px;">
+            📌 D. 1 M 亞硫酸如果不做近似，精確算出來的 [H<sup>+</sup>] 會是多少？
+          </div>
+          <p style="font-size:0.81rem; color:var(--text-sub); line-height:1.55;">
+            若嚴格列出第一段解離的完整平衡式（設解離度為 <i>x</i>）：<br>
+            <div style="text-align:center; font-family:monospace; color:var(--chalk-yellow); margin:4px 0; font-size:0.78rem;">
+              <i>K</i><sub>a1</sub> ＝ <i>x</i><sup>2</sup> / (1 － <i>x</i>) ＝ 10<sup>-2</sup> ＝ 0.01
+            </div>
+            展開整理成一元二次方程式：<i>x</i><sup>2</sup> ＋ 0.01<i>x</i> － 0.01 ＝ 0。<br>
+            透過根公式精確求解可得 <b><i>x</i> ≈ 0.095 M</b>（即精確的 [H<sup>+</sup>]），與我們用近似法算出的 0.1 M 非常接近，這證明了當 <i>K</i><sub>a1</sub> = 0.01 時，近似估算在化學計算上已具備極高的準確度！
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 頁尾版權 -->
+    <div class="footer">
+      <div>展氏新解 · 酸鹼平衡計算全攻略講義</div>
+      <div class="footer-copyright">© 展氏新解 版權所有</div>
+      <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">186</span> 次
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 隨堂測驗 Modal -->
+  <div id="quizModal" class="quiz-modal">
+    <div class="quiz-card-container">
+      <div class="quiz-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="brand-tag">展氏新解</span>
+          <h2 style="font-size:1.15rem; font-weight:900;">酸鹼平衡計算全攻略即時檢測系統</h2>
+        </div>
+        <button class="btn" style="background:#dc2626; color:#fff; border:none;" onclick="closeQuiz()">✕ 關閉返回講義</button>
+      </div>
+
+      <div class="quiz-stats-bar">
+        <span>已作答：<b id="answeredCount">0</b> / <span id="totalCount">6</span> 題</span>
+        <span>答對率：<b id="accuracyRate" style="color:var(--chalk-yellow);">0%</b></span>
+        <button class="btn" style="padding:2px 8px; font-size:0.75rem;" onclick="resetQuiz()">🔄 全部重置</button>
+      </div>
+
+      <div id="quizList" style="display:flex; flex-direction:column; gap:12px;"></div>
+    </div>
+  </div>
+
+  <script>
+    const QUESTION_BANK = [
+      {
+        id: 1,
+        level: "一元酸與未知 Ka 反推",
+        question: "某一元弱酸在 0.1 M 時測得 pH ＝ 2.0。若將此弱酸稀釋或改變濃度，下列敘述何者正確？",
+        options: [
+          "A. 此弱酸的解離常數 Ka 等於 10<sup>-5</sup>",
+          "B. 此弱酸的解離常數 Ka 等於 10<sup>-3</sup>",
+          "C. 若改配成 0.2 M 時，其 [H<sup>+</sup>] 恰好等於 0.2 M",
+          "D. 若改配成 0.2 M 時，其 pH 值會大於 2.0",
+          "E. 此弱酸屬強酸，故 0.1 M 時 [H<sup>+</sup>] ＝ 0.1 M"
+        ],
+        answer: 1,
+        explanation: "【展氏新解解析】：<br>• 由 pH = 2.0 知 [H<sup>+</sup>] = 10<sup>-2</sup> M。<br>• 代入 [H<sup>+</sup>] = √(c · Ka) ⇒ 10<sup>-2</sup> = √(0.1 × Ka) ⇒ Ka = 10<sup>-3</sup>。<br>• 故選項 B 正確。"
+      },
+      {
+        id: 2,
+        level: "硫酸分段解離與計算陷阱",
+        question: "在 25°C 下，關於 1.0 M 硫酸 (H<sub>2</sub>SO<sub>4</sub>) 水溶液之敘述，下列何者完全正確？（已知 HSO<sub>4</sub><sup>-</sup> 之 Ka2 ＝ 10<sup>-2</sup>）",
+        options: [
+          "A. 硫酸在水中兩段解離皆完全，故 1.0 M 硫酸之 [H<sup>+</sup>] ＝ 2.0 M",
+          "B. 硫酸第 1 段解離為強酸，第 2 段解離為弱酸，經精密平衡計算其 [H<sup>+</sup>] 接近 1.01 M 而非 2.0 M",
+          "C. 1.0 M 硫酸溶液中，硫酸根離子濃度 [SO<sub>4</sub><sup>2-</sup>] 等於 1.0 M",
+          "D. 硫酸加水稀釋時，其 pH 值上升速率與強鹽酸完全相同",
+          "E. 硫酸第 2 段解離常數 Ka2 極大，故 HSO<sub>4</sub><sup>-</sup> 幾乎 100% 解離"
+        ],
+        answer: 1,
+        explanation: "【展氏新解解析】：<br>• 硫酸第 1 段完全解離提供 1 M 氫離子，第 2 段為弱酸（Ka2 = 10<sup>-2</sup>），經 ICE 平衡計算微量解離後，[H<sup>+</sup>] ＝ 1.01 M。<br>• 故選項 B 正確，選項 A 錯誤（誤以為 [H<sup>+</sup>] = 2 M）。"
+      },
+      {
+        id: 3,
+        level: "亞硫酸近似計算技巧",
+        question: "已知亞硫酸 (H<sub>2</sub>SO<sub>3</sub>) 之 Ka1 ＝ 10<sup>-2</sup>，Ka2 ＝ 10<sup>-8</sup>。請問在 1.0 M 的 H<sub>2</sub>SO<sub>3</sub> 水溶液中，其氫離子濃度 [H<sup>+</sup>] 大約為多少？",
+        options: [
+          "A. 2.0 M",
+          "B. 1.0 M",
+          "C. 0.1 M",
+          "D. 10<sup>-4</sup> M",
+          "E. 10<sup>-8</sup> M"
+        ],
+        answer: 2,
+        explanation: "【展氏新解解析】：<br>• 因 Ka1 (10<sup>-2</sup>) 遠大於 Ka2 (10<sup>-8</sup>) 超過 10<sup>6</sup> 倍，第 2 段產生的氫離子可完全忽略。<br>• 直接將 H<sub>2</sub>SO<sub>3</sub> 視為一元弱酸代入第 1 段：[H<sup>+</sup>] ＝ √(c · Ka1) ＝ √(1.0 × 10<sup>-2</sup>) ＝ 0.1 M。<br>• 故選項 C 正確。"
+      },
+      {
+        id: 4,
+        level: "強鹼與難溶鹼計算",
+        question: "在 25°C 下，已知氫氧化鎂 $\\text{Mg(OH)}_2$ 的 $K_b = 10^{-11}$。關於其飽和水溶液之敘述，下列何者正確？[span_27](start_span)[span_27](end_span)",
+        options: [
+          "A. 1 M 的 $\\text{NaOH}$ 水溶液中 $[\\text{OH}^-] = 0.5\\text{ M}$",
+          "B. $\\text{Mg(OH)}_2$ 飽和溶液中 $[\\text{OH}^-] = 2x$，其中 $x$ 為溶解度",
+          "C. $10^{-11} = x^3$",
+          "D. $\\text{Mg(OH)}_2$ 屬強溶強鹼，在水中 100% 完全解離",
+          "E. 飽和 $\\text{Mg(OH)}_2$ 溶液中的 $[\\text{Mg}^{2+}]$ 等於 $[\\text{OH}^-]$"
+        ],
+        answer: 1,
+        explanation: "【展氏新解解析】：<br>• $\\text{Mg(OH)}_2 \\rightleftharpoons \\text{Mg}^{2+} + 2\\text{OH}^-$，設溶解度為 $x$，則 $[\\text{Mg}^{2+}] = x$、$[\\text{OH}^-] = 2x$。<br>• 故選項 B 正確（飽和溶液中 $[\\text{OH}^-] = 2x$）。"
+      },
+      {
+        id: 5,
+        level: "氨水微觀與 pH 計算",
+        question: "已知 0.1 M 氨水 ($\\text{NH}_3$) 之 $K_b \\approx 10^{-5}$。關於此溶液之敘述，下列何者正確？[span_28](start_span)[span_28](end_span)",
+        options: [
+          "A. 巨觀下每 100 個 $\\text{NH}_3$ 分子全數解離",
+          "B. 水中 $[\\text{OH}^-] = 10^{-3}\\text{ M}$",
+          "C. 此溶液的 $\\text{pOH} = 5$",
+          "D. 此溶液的 $\\text{pH} = 3$",
+          "E. 此溶液呈強酸性"
+        ],
+        answer: 1,
+        explanation: "【展氏新解解析】：<br>• $[\\text{OH}^-] = \\sqrt{c \\cdot K_b} = \\sqrt{0.1 \\times 10^{-5}} = 10^{-3}\\text{ M}$。<br>• 故 $\\text{pOH} = 3$，$\\text{pH} = 14 - 3 = 11$。<br>• 故選項 B 正確。"
+      },
+      {
+        id: 6,
+        level: "共軛酸鹼對常數關係",
+        question: "已知氨 ($\\text{NH}_3$) 之 $K_b = 10^{-5}$。請問 0.1 M 銨根离子 ($\\text{NH}_4^+$) 水溶液之 $\\text{pH}$ 值為多少？[span_29](start_span)[span_29](end_span)",
+        options: [
+          "A. 1",
+          "B. 3",
+          "C. 5",
+          "D. 9",
+          "E. 11"
+        ],
+        answer: 2,
+        explanation: "【展氏新解解析】：<br>• $\\text{NH}_4^+$ 之 $K_a = 10^{-14} / K_b = 10^{-14} / 10^{-5} = 10^{-9}$。<br>• $[\\text{H}^+] = \\sqrt{c \\cdot K_a} = \\sqrt{0.1 \\times 10^{-9}} = 10^{-5}\\text{ M}$。<br>• $\\text{pH} = -\\log(10^{-5}) = 5$。<br>• 故選項 C 正確。"
+      }
+    ];
+
+    const userAnswers = {};
+
+    function renderQuiz() {
+      const container = document.getElementById('quizList');
+      container.innerHTML = '';
+      document.getElementById('totalCount').innerText = QUESTION_BANK.length;
+
+      QUESTION_BANK.forEach((q, idx) => {
+        const qCard = document.createElement('div');
+        qCard.className = 'question-block';
+
+        let optsHtml = q.options.map((opt, optIdx) => `
+          <button class="opt-btn" id="btn_${q.id}_${optIdx}" onclick="selectAnswer(${q.id}, ${optIdx}, ${q.answer})">
+            ${opt}
+          </button>
+        `).join('');
+
+        qCard.innerHTML = `
+          <div>
+            <span class="q-badge">${q.level}</span>
+            <div style="font-weight: 800; font-size: 0.92rem; line-height: 1.5; margin-top: 4px;">第 ${idx + 1} 題：${q.question}</div>
+          </div>
+          <div class="option-list">${optsHtml}</div>
+          <div class="expl-box" id="expl_${q.id}">${q.explanation}</div>
+        `;
+        container.appendChild(qCard);
+      });
+      updateStats();
+    }
+
+    function selectAnswer(qid, selectedIdx, correctIdx) {
+      if (userAnswers[qid] !== undefined) return;
+      userAnswers[qid] = selectedIdx;
+      const q = QUESTION_BANK.find(item => item.id === qid);
+
+      q.options.forEach((_, optIdx) => {
+        const btn = document.getElementById(`btn_${qid}_${optIdx}`);
+        btn.disabled = true;
+        if (optIdx === correctIdx) {
+          btn.classList.add('correct');
+          btn.innerHTML += ' ✓ (正確)';
+        }
+      });
+
+      if (selectedIdx !== correctIdx) {
+        const wrongBtn = document.getElementById(`btn_${qid}_${selectedIdx}`);
+        wrongBtn.classList.add('wrong');
+        wrongBtn.innerHTML += ' ✕ (您的選擇)';
+      }
+
+      document.getElementById(`expl_${qid}`).classList.add('show');
+      updateStats();
+    }
+
+    function updateStats() {
+      const answeredKeys = Object.keys(userAnswers);
+      const answeredCount = answeredKeys.length;
+      document.getElementById('answeredCount').innerText = answeredCount;
+
+      let correctCount = 0;
+      answeredKeys.forEach(qid => {
+        const q = QUESTION_BANK.find(item => item.id == qid);
+        if (userAnswers[qid] === q.answer) {
+          correctCount++;
+        }
+      });
+
+      const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+      document.getElementById('accuracyRate').innerText = accuracy + '%';
+    }
+
+    function resetQuiz() {
+      Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+      renderQuiz();
+    }
+
+    function openQuiz() {
+      document.getElementById('quizModal').classList.add('active');
+      renderQuiz();
+    }
+
+    function closeQuiz() {
+      document.getElementById('quizModal').classList.remove('active');
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('theme-paper');
+    }
+
+    function toggleCloze() {
+      document.body.classList.toggle('cloze-mode');
+      document.querySelectorAll('.cloze').forEach(el => el.classList.remove('revealed'));
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!document.body.classList.contains('cloze-mode')) return;
+      const clozeTarget = e.target.closest('.cloze');
+      if (clozeTarget) {
+        e.stopPropagation();
+        clozeTarget.classList.toggle('revealed');
+      }
+    });
+
+    renderQuiz();
+  </script>
+</body>
+</html>
