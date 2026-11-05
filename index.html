@@ -465,21 +465,25 @@
           • <b>微觀 ICE 溶解平衡表</b>：<br>
           <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
             <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>Mg(OH)<sub>2(s)</sub></th><th>Mg<sup>2+</sup></th><th>2OH<sup>-</sup></th></tr>
+            <tr><td><b>初 (I)</b></td><td>過量固體</td><td>0 M</td><td>0 M</td></tr>
             <tr><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋2<i>x</i></td></tr>
-            <tr><td><b>平 (E)</b></td><td>約固體</td><td><i>x</i></td><td>2<i>x</i></td></tr>
+            <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>約固體</td><td><i>x</i></td><td>2<i>x</i></td></tr>
           </table>
           <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
-            • <i>K</i><sub>b</sub> 表達式與求解：<br>
-            <div style="font-family:monospace; color:var(--chalk-yellow); font-size:0.74rem;">
+            • <i>K</i><sub>b</sub> 表達式與計量推導求解：<br>
+            <div style="font-family:monospace; color:var(--chalk-yellow); font-size:0.72rem; line-height:1.6; margin-top:2px;">
               <i>K</i><sub>b</sub> ＝ ([Mg<sup>2+</sup>][OH<sup>-</sup>]<sup>2</sup>) / [Mg(OH)<sub>2(s)</sub>]<br>
-              10<sup>-11</sup> ＝ <span class="cloze" style="font-weight:bold;"><i>x</i> · (2<i>x</i>)<sup>2</sup> / 1 ＝ 4<i>x</i><sup>3</sup></span>
+              10<sup>-11</sup> ＝ <i>x</i> · (2<i>x</i>)<sup>2</sup> / 1 ＝ 4<i>x</i><sup>3</sup><br>
+              <i>x</i><sup>3</sup> ＝ 2.5 × 10<sup>-12</sup> &nbsp;⇒&nbsp; <i>x</i> ≈ 1.36 × 10<sup>-4</sup> M<br>
+              • <b>實際計算出 2<i>x</i></b>：<br>
+              [OH<sup>-</sup>] ＝ 2<i>x</i> ＝ 2 × (1.36 × 10<sup>-4</sup>)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ <span style="color:var(--chalk-green); font-weight:bold;">2.72 × 10<sup>-4</sup> M</span>
             </div>
-            • 飽和溶液中 [OH<sup>-</sup>] ＝ <span style="color:var(--chalk-green); font-weight:bold;">2<i>x</i></span>
           </div>
         </div>
 
         <div class="note-pill" style="display:block; text-align:center;">
-          📌 展哥重點：難溶弱鹼的 [OH<sup>-</sup>] 需透過溶度積常數 <i>K</i><sub>b</sub> 嚴格建立解離 ICE 求解！
+          📌 展哥重點：難溶弱鹼的 [OH<sup>-</sup>] 需透過 <i>K</i><sub>b</sub> 嚴格建立 ICE 並解出 2<i>x</i>！
         </div>
       </div>
 
@@ -513,8 +517,8 @@
           <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
             <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>NH<sub>3</sub></th><th>NH<sub>4</sub><sup>+</sup></th><th>OH<sup>-</sup></th></tr>
             <tr><td><b>初 (I)</b></td><td>0.1 M</td><td>0 M</td><td>0 M</td></tr>
-            <tr style="border-bottom: 2px solid var(--chalk-orange);"><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋<i>x</i></td></tr>
-            <tr><td><b>平 (E)</b></td><td>0.1 － <i>x</i></td><td><i>x</i></td><td><i>x</i></td></tr>
+            <tr><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋<i>x</i></td></tr>
+            <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>0.1 － <i>x</i></td><td><i>x</i></td><td><i>x</i></td></tr>
           </table>
           <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
             • 近似解與公式代入：<br>
@@ -635,7 +639,7 @@
       <div>展氏新解 · 鹼性的計算與其共軛酸的酸性攻略講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">245</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">262</span> 次
       </div>
     </div>
 
@@ -670,13 +674,13 @@
         question: "在 25°C 下，已知氫氧化鎂 $\\text{Mg(OH)}_2$ 的溶度積常數 $K_b = 10^{-11}$。關於其飽和水溶液之敘述，下列何者正確？",
         options: [
           "A. 1 M 的 $\\text{NaOH}$ 水溶液中 $[\\text{OH}^-] = 0.5\\text{ M}$",
-          "B. 難溶弱鹼 $\\text{Mg(OH)}_2$ 飽和溶液中 $[\\text{OH}^-] = 2x$，其中 $x$ 為溶解度",
+          "B. 難溶弱鹼 $\\text{Mg(OH)}_2$ 飽和溶液中 $[\\text{OH}^-] = 2x$，其計算值約為 $2.72 \\times 10^{-4}\\text{ M}$",
           "C. $10^{-11} = x^3$",
           "D. $\\text{Mg(OH)}_2$ 屬強溶強鹼，在水中 100% 完全解離",
           "E. 飽和 $\\text{Mg(OH)}_2$ 溶液中的 $[\\text{Mg}^{2+}]$ 等於 $[\\text{OH}^-]$"
         ],
         answer: 1,
-        explanation: "【展氏新解解析】：<br>• $\\text{Mg(OH)}_2 \\rightleftharpoons \\text{Mg}^{2+} + 2\\text{OH}^-$，設溶解度為 $x$，則 $[\\text{Mg}^{2+}] = x$、$[\\text{OH}^-] = 2x$。<br>• 故選項 B 正確。"
+        explanation: "【展氏新解解析】：<br>• $\\text{Mg(OH)}_2 \\rightleftharpoons \\text{Mg}^{2+} + 2\\text{OH}^-$，設溶解度為 $x$，則 $[\\text{Mg}^{2+}] = x$、$[\\text{OH}^-] = 2x$。<br>• 經計量推導，$4x^3 = 10^{-11}$，得 $[\\text{OH}^-] = 2x \approx 2.72 \\times 10^{-4}\\text{ M}$。<br>• 故選項 B 正確。"
       },
       {
         id: 2,
