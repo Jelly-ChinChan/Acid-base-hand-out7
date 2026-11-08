@@ -508,11 +508,25 @@
           <div class="sub-head" style="color:var(--chalk-yellow);">1. 氨水的微觀結構與水合歷程</div>
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.77rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
-            <div style="display: flex; justify-content: space-around; align-items: flex-start; margin-top: 4px; font-size: 0.72rem; color: var(--chalk-cyan);">
-              <span>H<br>│<br>H-N-H</span>
-              <span>H<br>│<br>H-O</span>
-              <span>H<br>│<br>H-N(H)-OH</span>
-              <span>NH<sub>4</sub><sup>+</sup> + OH<sup>-</sup></span>
+            <div style="display: flex; justify-content: space-around; align-items: flex-start; margin-top: 6px; font-size: 0.7rem; color: var(--chalk-cyan);">
+              <!-- NH3 (對應第一張圖：十字結構帶孤對電子) -->
+              <div style="text-align: center; line-height: 1.2;">
+                H<br>│<br>H－N:[span_0](start_span)[span_0](end_span)<br>│<br>H
+              </div>
+              <!-- H2O (對應第二張圖：H-O-H) -->
+              <div style="text-align: center; line-height: 1.2;">
+                <br>
+                H－O－H[span_1](start_span)[span_1](end_span)
+              </div>
+              <!-- NH4OH (對應第三張圖：N接4個H，右邊H接OH) -->
+              <div style="text-align: center; line-height: 1.2;">
+                H<br>│<br>H－N－H[span_2](start_span)[span_2](end_span)<br>│ &nbsp;&nbsp;&nbsp;&nbsp;┆ OH[span_3](start_span)[span_3](end_span)<br>H[span_4](start_span)[span_4](end_span)
+              </div>
+              <!-- NH4+ + OH- -->
+              <div style="text-align: center; line-height: 1.2;">
+                H<br>│<br>H－N<sup>+</sup>－H<br>│<br>H
+                <div style="margin-top:2px;">OH<sup>-</sup></div>
+              </div>
             </div>
           </div>
           <div style="font-size:0.8rem; line-height:1.5;">
@@ -613,13 +627,19 @@
       <div class="col-card">
         <div class="col-title">
           <span>四、共軛酸鹼對 <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> 關係</span>
-          <span style="font-size:0.75rem; opacity:0.8;">共軛酸<i>K</i><sub>a</sub>×共軛鹼<i>K</i><sub>b</sub> = 10<sup>-14</sup></span>
+          <div style="width: 100%; text-align: center; font-size: 0.78rem; color: var(--chalk-yellow); margin-top: 2px;">
+            共軛酸 <i>K</i><sub>a</sub> × 共軛鹼 <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup>
+          </div>
         </div>
 
         <div class="section-box">
           <div class="sub-head" style="color:var(--chalk-yellow);">1. 共軛酸鹼對常數關係推導</div>
           <div style="font-size:0.8rem; line-height:1.5; letter-spacing:-0.3px;">
             以銨根與氨 (NH<sub>4</sub><sup>+</sup> / NH<sub>3</sub>) 為例：<br>
+            <div style="background: rgba(0,0,0,0.25); border: 1px dashed var(--chalk-cyan); padding: 5px; border-radius: 4px; margin: 4px 0; font-size: 0.75rem; text-align: center;">
+              <span style="color: var(--chalk-pink); font-weight: bold;">NH<sub>4</sub><sup>+</sup></span>（多一個 H<sup>+</sup>） ⇌ <span style="color: var(--chalk-cyan); font-weight: bold;">NH<sub>3</sub></span>（少一個 H<sup>+</sup>）<br>
+              <span style="font-size: 0.7rem; color: var(--text-sub);">💡 多 H<sup>+</sup> 者為共軛酸，少 H<sup>+</sup> 者為共軛鹼</span>
+            </div>
             • <b>酸 NH<sub>4</sub><sup>+</sup> 解離</b>：<br>
             <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.73rem; margin:2px 0; text-align:center;">
               NH<sub>4</sub><sup>+</sup> ⇌ NH<sub>3</sub> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub>
@@ -629,11 +649,30 @@
               NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub>
             </div>
             • <b>直式方程式相加與消去</b>：<br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin:4px 0; background:rgba(0,0,0,0.3); padding:6px; border-radius:4px; line-height:1.6;">
-              <span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>4</sub><sup>+</sup></span> ⇌ <span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>3</sub></span> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub><br>
-              <span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>3</sub></span> ＋ H<sub>2</sub>O ⇌ <span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>4</sub><sup>+</sup></span> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub><br>
+            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin:4px 0; background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;">
+              <table style="width:100%; border-collapse:collapse; font-family:monospace; font-size:0.74rem;">
+                <tr>
+                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>4</sub><sup>+</sup></span></td>
+                  <td style="text-align:center; width:24px;">⇌</td>
+                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>3</sub></span> ＋ H<sup>+</sup></td>
+                  <td style="text-align:right; color:var(--text-sub);">, <i>K</i><sub>a</sub></td>
+                </tr>
+                <tr>
+                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>3</sub></span> ＋ H<sub>2</sub>O</td>
+                  <td style="text-align:center; width:24px;">⇌</td>
+                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>4</sub><sup>+</sup></span> ＋ OH<sup>-</sup></td>
+                  <td style="text-align:right; color:var(--text-sub);">, <i>K</i><sub>b</sub></td>
+                </tr>
+              </table>
               <hr style="border: 0; border-top: 1.5px solid var(--chalk-yellow); margin: 4px 0;">
-              <b>H<sub>2</sub>O ⇌ H<sup>+</sup> ＋ OH<sup>-</sup></b> <span style="float: right; color: var(--chalk-yellow); font-weight: bold;"><i>K</i><sub>w</sub> ＝ <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup></span>
+              <table style="width:100%; border-collapse:collapse; font-family:monospace; font-size:0.74rem;">
+                <tr>
+                  <td style="padding:1px 0; font-weight:bold;">H<sub>2</sub>O</td>
+                  <td style="text-align:center; width:24px; font-weight:bold;">⇌</td>
+                  <td style="padding:1px 0; font-weight:bold;">H<sup>+</sup> ＋ OH<sup>-</sup></td>
+                  <td style="text-align:right; color:var(--chalk-yellow); font-weight:bold;"><i>K</i><sub>w</sub> ＝ <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup></td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -671,7 +710,7 @@
       <div>展氏新解 · 鹼性的計算與其共軛酸的酸性攻略講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">751</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">846</span> 次
       </div>
     </div>
 
@@ -703,58 +742,58 @@
       {
         id: 1,
         level: "強鹼與難溶弱鹼計算",
-        question: "在 25°C 下，已知氫氧化鎂 $\\text{Mg(OH)}_2$ 的溶度積常數 $K_b = 10^{-11}$。關於其飽和水溶液之敘述[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)，下列何者正確？",
+        question: "在 25°C 下，已知氫氧化鎂 Mg(OH)₂ 的溶度積常數 Kb = 10⁻¹¹。關於其飽和水溶液之敘述，下列何者正確？",
         options: [
-          "A. 1 M 的 $\\text{NaOH}$ 水溶液中 $[\\text{OH}^-] = 0.5\\text{ M}$",
-          "B. 難溶弱鹼 $\\text{Mg(OH)}_2$ 飽和溶液中 $[\\text{OH}^-] = 2x$，其計算值約為 $2.72 \\times 10^{-4}\\text{ M}$[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)",
-          "C. $10^{-11} = x^3$",
-          "D. $\\text{Mg(OH)}_2$ 屬強溶強鹼，在水中 100% 完全解離",
-          "E. 飽和 $\\text{Mg(OH)}_2$ 溶液中的 $[\\text{Mg}^{2+}]$ 等於 $[\\text{OH}^-]$"
+          "A. 1 M 的 NaOH 水溶液中 [OH⁻] = 0.5 M",
+          "B. 難溶弱鹼 Mg(OH)₂ 飽和溶液中 [OH⁻] = 2x，其計算值約為 2.72 × 10⁻⁴ M",
+          "C. 10⁻¹¹ = x³",
+          "D. Mg(OH)₂ 屬強溶強鹼，在水中 100% 完全解離",
+          "E. 飽和 Mg(OH)₂ 溶液中的 [Mg²⁺] 等於 [OH⁻]"
         ],
         answer: 1,
-        explanation: "【展氏新解解析】：<br>• $\\text{Mg(OH)}_2 \\rightleftharpoons \\text{Mg}^{2+} + 2\\text{OH}^-$，設溶解度為 $x$，則 $[\\text{Mg}^{2+}] = x$、$[\\text{OH}^-] = 2x$[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)。<br>• 經計量推導，$4x^3 = 10^{-11}$，得 $[\\text{OH}^-] = 2x \approx 2.72 \\times 10^{-4}\\text{ M}$[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)。<br>• 故選項 B 正確。"
+        explanation: "【展氏新解解析】：<br>• Mg(OH)₂ ⇌ Mg²⁺ + 2OH⁻，設溶解度為 x，則 [Mg²⁺] = x、[OH⁻] = 2x。<br>• 經計量推導，4x³ = 10⁻¹¹，得 [OH⁻] = 2x ≈ 2.72 × 10⁻⁴ M。<br>• 故選項 B 正確。"
       },
       {
         id: 2,
         level: "非含氧鹼氨水微觀與計算",
-        question: "已知 0.1 M 氨水 ($\\text{NH}_3$) 之 $K_b \\approx 10^{-5}$。關於此溶液之敘述[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)，下列何者正確？",
+        question: "已知 0.1 M 氨水 (NH₃) 之 Kb ≈ 10⁻⁵。關於此溶液之敘述，下列何者正確？",
         options: [
-          "A. 巨觀下每 100 個 $\\text{NH}_3$ 分子全數解離",
-          "B. 水中 $[\\text{OH}^-] = 10^{-3}\\text{ M}$[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)",
-          "C. 此溶液的 $\\text{pOH} = 5$",
-          "D. 此溶液的 $\\text{pH} = 3$",
+          "A. 巨觀下每 100 個 NH₃ 分子全數解離",
+          "B. 水中 [OH⁻] = 10⁻³ M",
+          "C. 此溶液的 pOH = 5",
+          "D. 此溶液的 pH = 3",
           "E. 此溶液呈強酸性"
         ],
         answer: 1,
-        explanation: "【展氏新解解析】：<br>• $[\\text{OH}^-] = \\sqrt{c \\cdot K_b} = \\sqrt{0.1 \\times 10^{-5}} = 10^{-3}\\text{ M}$[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)。<br>• 故 $\\text{pOH} = 3$，$\\text{pH} = 14 - 3 = 11$[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)。<br>• 故選項 B 正確。"
+        explanation: "【展氏新解解析】：<br>• [OH⁻] = √(c · Kb) = √(0.1 × 10⁻⁵) = 10⁻³ M。<br>• 故 pOH = 3，pH = 14 - 3 = 11。<br>• 故選項 B 正確。"
       },
       {
         id: 3,
         level: "酸鹼性公式對比與 pH 換算",
-        question: "關於弱酸與弱鹼之計算公式，下列對稱關係何者正確？[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span)",
+        question: "關於弱酸與弱鹼之計算公式，下列對稱關係何者正確？",
         options: [
-          "A. 弱酸 $[\\text{H}^+] = \\sqrt{c \\cdot K_a}$，弱鹼 $[\\text{OH}^-] = \\sqrt{c \\cdot K_b}$[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)",
-          "B. 弱酸解離度 $\\alpha = \\sqrt{c \\cdot K_a}$",
-          "C. 溶液中 $\\text{pH} \\times \\text{pOH} = 14$",
+          "A. 弱酸 [H⁺] = √(c · Ka)，弱鹼 [OH⁻] = √(c · Kb)",
+          "B. 弱酸解離度 α = √(c · Ka)",
+          "C. 溶液中 pH × pOH = 14",
           "D. 氨水解離常數表達式中分母不能近似",
-          "E. 強鹼水溶液中 $[\\text{OH}^-] = \\sqrt{c \\cdot K_b}$"
+          "E. 強鹼水溶液中 [OH⁻] = √(c · Kb)"
         ],
         answer: 0,
-        explanation: "【展氏新解解析】：<br>• 弱酸之氫離子濃度 $[\\text{H}^+] = \\sqrt{c \\cdot K_a}$，弱鹼之氫氧根離子濃度 $[\\text{OH}^-] = \\sqrt{c \\cdot K_b}$[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span)。<br>• 故選項 A 正確。"
+        explanation: "【展氏新解解析】：<br>• 弱酸之氫離子濃度 [H⁺] = √(c · Ka)，弱鹼之氫氧根離子濃度 [OH⁻] = √(c · Kb)。<br>• 故選項 A 正確。"
       },
       {
         id: 4,
         level: "共軛酸鹼對常數關係",
-        question: "已知氨 ($\\text{NH}_3$) 之 $K_b = 10^{-5}$。請問 0.1 M 銨根離子 ($\\text{NH}_4^+$) 水溶液之 $\\text{pH}$ 值為多少？[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span)",
+        question: "已知氨 (NH₃) 之 Kb = 10⁻⁵。請問 0.1 M 銨根離子 (NH₄⁺) 水溶液之 pH 值為多少？",
         options: [
           "A. 1",
           "B. 3",
-          "C. 5[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)",
+          "C. 5",
           "D. 9",
           "E. 11"
         ],
         answer: 2,
-        explanation: "【展氏新解解析】：<br>• $\\text{NH}_4^+$ 之 $K_a = 10^{-14} / K_b = 10^{-14} / 10^{-5} = 10^{-9}$[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)。<br>• $[\\text{H}^+] = \\sqrt{0.1 \\times 10^{-9}} = 10^{-5}\\text{ M}$[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span)。<br>• $\\text{pH} = -\\log(10^{-5}) = 5$[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span)。<br>• 故選項 C 正確。"
+        explanation: "【展氏新解解析】：<br>• NH₄⁺ 之 Ka = 10⁻¹⁴ / Kb = 10⁻¹⁴ / 10⁻⁵ = 10⁻⁹。<br>• [H⁺] = √(0.1 × 10⁻⁹) = 10⁻⁵ M。<br>• pH = -log(10⁻⁵) = 5。<br>• 故選項 C 正確。"
       }
     ];
 
