@@ -509,32 +509,34 @@
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.75rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
             <div style="display: flex; justify-content: space-around; align-items: flex-start; margin-top: 6px; font-size: 0.68rem; color: var(--chalk-cyan);">
-              <!-- NH3 (嚴格置中對齊垂直軸) -->
-              <div style="text-align: center; line-height: 1.2; width: 65px;">
+              <!-- NH3 (鎖定完美十字結構) -->
+              <div style="text-align: center; line-height: 1.2; width: 55px;">
                 <div style="text-align: center;">H</div>
                 <div style="text-align: center;">│</div>
-                <div style="white-space: nowrap; margin-left: -10px;">H－N:</div>
+                <div style="white-space: nowrap; margin-left: -8px;">H－N:</div>
                 <div style="text-align: center;">│</div>
                 <div style="text-align: center;">H</div>
               </div>
               <!-- H2O -->
-              <div style="text-align: center; line-height: 1.2; width: 65px;">
+              <div style="text-align: center; line-height: 1.2; width: 55px;">
                 <br>
                 H－O－H
               </div>
-              <!-- NH4OH (嚴格置中對齊垂直軸) -->
-              <div style="text-align: center; line-height: 1.2; width: 95px;">
+              <!-- NH4OH (採用獨立置中框架，確保上下 H 絕對正對 N) -->
+              <div style="text-align: center; line-height: 1.2; width: 110px;">
                 <div style="text-align: center;">H</div>
                 <div style="text-align: center;">│</div>
-                <div style="white-space: nowrap; margin-left: -15px;">H－N－H－OH</div>
+                <div style="display: flex; align-items: center; justify-content: center; white-space: nowrap;">
+                  <span>H－</span><span style="display:inline-block; text-align:center;"><span style="display:block;">N</span></span><span>－H－OH</span>
+                </div>
                 <div style="text-align: center;">│</div>
                 <div style="text-align: center;">H</div>
               </div>
               <!-- NH4+ + OH- -->
-              <div style="text-align: center; line-height: 1.2; width: 65px;">
+              <div style="text-align: center; line-height: 1.2; width: 55px;">
                 <div style="text-align: center;">H</div>
                 <div style="text-align: center;">│</div>
-                <div style="white-space: nowrap; margin-left: -10px;">H－N<sup>+</sup></div>
+                <div style="white-space: nowrap; margin-left: -8px;">H－N<sup>+</sup></div>
                 <div style="text-align: center;">│</div>
                 <div style="text-align: center;">H</div>
                 <div style="margin-top:2px; text-align:center;">OH<sup>-</sup></div>
@@ -722,7 +724,7 @@
       <div>展氏新解 · 鹼性的計算與其共軛酸的酸性攻略講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1031</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1062</span> 次
       </div>
     </div>
 
