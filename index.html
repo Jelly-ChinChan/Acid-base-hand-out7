@@ -509,10 +509,10 @@
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.75rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
             
-            <!-- 使用等寬 pre 區塊確保 NH3、H2O、NH4OH、NH4+ 與 OH- 完全垂直對齊 -->
+            <!-- 使用絕對對齊的 pre 區塊表格 -->
             <table style="width:100%; margin-top:6px; border-collapse:collapse; font-size:0.65rem; color:var(--chalk-cyan); text-align:center;">
               <tr>
-                <!-- 1. NH3 (十字結構) -->
+                <!-- 1. NH3 (鎖定十字結構) -->
                 <td style="width:20%; vertical-align:top; padding:1px;">
                   <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
   │
@@ -526,11 +526,11 @@ H－N:
                 <td style="width:20%; vertical-align:top; padding:1px;">
                   <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>H－O－H<br><br></pre>
                 </td>
-                <!-- 3. NH4OH (N置中，左右延伸) -->
+                <!-- 3. NH4OH (使用專屬 3 行獨立結構，保證上下 H 絕對正對 N) -->
                 <td style="width:25%; vertical-align:top; padding:1px;">
                   <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
   │
-H－N－H－OH
+ N－OH
   │
   H</pre>
                 </td>
@@ -738,7 +738,7 @@ H－N<sup>+</sup>－H
       <div>展氏新解 · 計算鹼性及其共軛酸的酸性講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1267</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1291</span> 次
       </div>
     </div>
 
