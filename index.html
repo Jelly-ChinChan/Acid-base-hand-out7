@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【展氏新解】計算鹼性及其共軛酸的酸性</title>
+  <title>【展氏新解】多元酸的解離計算與一元弱酸進階範例</title>
   <style>
     :root {
       --bg-board: #142c1f;
@@ -17,7 +17,6 @@
       --chalk-orange: #fdba74;
       --chalk-green: #86efac;
       --chalk-red: #f87171;
-      --chalk-pink: #f472b6;
       --highlight-bg: rgba(253, 224, 71, 0.18);
       --section-box-bg: rgba(0, 0, 0, 0.22);
       --reaction-bg: rgba(0, 0, 0, 0.35);
@@ -45,7 +44,6 @@
       --chalk-orange: #c2410c;
       --chalk-green: #15803d;
       --chalk-red: #b91c1c;
-      --chalk-pink: #db2777;
       --highlight-bg: #fef3c7;
       --section-box-bg: #f1f5f9;
       --reaction-bg: #e2e8f0;
@@ -203,7 +201,7 @@
       align-items: stretch;
     }
 
-    @media (max-width: 1400px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1200px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) { .board-grid { grid-template-columns: 1fr; } }
 
     .col-card {
@@ -261,7 +259,7 @@
 
     .chem-eq-hero {
       font-weight: 900;
-      color: var(--chalk-pink);
+      color: var(--chalk-green);
       font-size: clamp(0.85rem, 2.5vw, 0.98rem);
       text-align: center;
       padding: 5px 4px;
@@ -294,7 +292,6 @@
     }
     .role-table th { background: var(--table-th-bg); font-weight: 800; }
 
-    /* 金色發光特效樣式 */
     .gold-glow {
       background: rgba(253, 224, 71, 0.25) !important;
       color: var(--chalk-yellow) !important;
@@ -321,10 +318,18 @@
       margin-top: 4px;
     }
 
-    /* 挖空模式 */
+    .diagram-wrap {
+      width: 100%;
+      background: var(--diagram-bg);
+      border-radius: 8px;
+      padding: 6px 4px;
+      text-align: center;
+      border: 1px solid var(--card-border);
+    }
+
     .cloze { transition: background-color 0.2s ease, color 0.2s ease; cursor: default; }
     body.cloze-mode .cloze {
-      background: #334155 !important;
+      background: #475569 !important;
       color: transparent !important;
       border-radius: 4px;
       padding: 1px 6px;
@@ -340,7 +345,7 @@
     body.cloze-mode .cloze.revealed {
       background: var(--highlight-bg) !important;
       color: inherit !important;
-      border: 1px solid var(--chalk-green) !important;
+      border: 1.5px solid var(--chalk-green) !important;
       cursor: pointer !important;
     }
 
@@ -414,7 +419,7 @@
   <div class="toolbar">
     <div class="toolbar-title-wrap">
       <span class="brand-tag">展氏新解</span>
-      <span class="toolbar-title">計算鹼性及其共軛酸的酸性</span>
+      <span class="toolbar-title">多元酸及其鹽的分類、水解與酸鹼性判斷</span>
     </div>
     <div class="btn-group">
       <button class="btn btn-primary" onclick="openQuiz()">📝 進入隨堂測驗</button>
@@ -430,315 +435,190 @@
     <div class="board-header">
       <div class="main-title-wrap">
         <span class="brand-tag" style="font-size:0.95rem; padding:3px 8px;">展氏新解</span>
-        <h1>計算鹼性及其共軛酸的酸性</h1>
-        <span class="badge-pill">強鹼與難溶弱鹼 · 氨水微觀水合 · 酸鹼公式對比 · 共軛酸鹼對 K<sub>a</sub>·K<sub>b</sub> = 10<sup>-14</sup></span>
+        <h1>多元酸及其鹽的分類、水解與酸鹼性判斷</h1>
+        <span class="badge-pill">二元酸/三元酸解離 · 某氫鹽酸鹼性判斷 · 磷酸系列命名與正鹽酸式鹽</span>
       </div>
     </div>
 
-    <!-- 四大核心欄位 (對應板書內容) -->
+    <!-- 四大核心欄位（維持您原本的四欄式極致排版） -->
     <div class="board-grid">
 
-      <!-- 欄位一：強鹼與難溶弱鹼計算 (NaOH 與 Mg(OH)2) -->
+      <!-- 欄位一：一元酸及其鹽 -->
       <div class="col-card">
         <div class="col-title">
-          <span>一、強鹼與難溶弱鹼計算</span>
-          <span style="font-size:0.75rem; opacity:0.8;">NaOH 與 Mg(OH)<sub>2</sub> 實戰</span>
+          <span>一、一元酸及其鹽</span>
+          <span style="font-size:0.75rem; opacity:0.8;">共軛酸鹼對與水解</span>
         </div>
 
-        <div class="section-box" style="border-left-color: var(--chalk-pink);">
-          <div class="sub-head" style="color: var(--chalk-pink);">1. 強鹼：氫氧化鈉 (NaOH)</div>
-          <div class="chem-eq-hero" style="color: var(--chalk-pink);">
-            NaOH → Na<sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub> ＝ ∞
+        <div class="section-box">
+          <div class="sub-head">1. 鹽類的酸鹼性與水解反應</div>
+          <div style="font-size:0.8rem; line-height:1.55; letter-spacing:-0.3px;">
+            • <b>強酸弱鹼鹽</b>（如 HCl + NaOH ➔ NaCl 或 NH<sub>4</sub>Cl）：<br>
+            　溶液顯 <span style="color:var(--chalk-cyan);">酸性</span>。<br>
+            • <b>弱酸強鹼鹽</b>（如 HF、CH<sub>3</sub>COOH 之鈉鹽）：<br>
+            　共軛鹼水解：F<sup>-</sup> + H<sub>2</sub>O ⇌ HF + OH<sup>-</sup><br>
+            　溶液顯 <span style="color:var(--chalk-yellow);">鹼性</span>。<br><br>
+            • <b>大小比較規則</b>：<br>
+            　酸性：HF &gt; CH<sub>3</sub>COOH<br>
+            　鹼性（共軛鹼）：F<sup>-</sup> &lt; CH<sub>3</sub>COO<sup>-</sup><br>
+            　常數關係：Ka × Kb = 10<sup>-14</sup>
           </div>
-          <div style="font-size:0.8rem; margin-top:4px; line-height:1.5;">
-            • <b>1 M 的氫氧化鈉水溶液 ICE 計算</b>：<br>
-            <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
-              <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>NaOH</th><th>Na<sup>+</sup></th><th>OH<sup>-</sup></th></tr>
-              <tr><td><b>初 (I)</b></td><td>1 M</td><td>0 M</td><td>0 M</td></tr>
-              <tr><td><b>變 (C)</b></td><td>－1 M</td><td>＋1 M</td><td>＋1 M</td></tr>
-              <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>0 M</td><td>1 M</td><td><span class="gold-glow" style="padding: 1px 6px; border-radius: 3px; display: inline-block;">1 M</span></td></tr>
-            </table>
-            • <b>結論</b>：因為強鹼 100% 完全解離，故：<br>
-            <div style="text-align: center; margin-top: 4px;">
-              <span style="color:var(--chalk-yellow); font-weight:bold; font-size:0.9rem;">[OH<sup>-</sup>] ＝ 1 M</span>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-orange);">
+          <div class="sub-head" style="color:var(--chalk-orange);">2. 離子水解實戰範例</div>
+          <div style="font-size:0.79rem; line-height:1.5;">
+            • MgCl<sub>2</sub> 水溶液顯 <span style="color:var(--chalk-cyan);">酸性</span>：<br>
+            　Mg<sup>2+</sup> + H<sub>2</sub>O ⇌ Mg(OH)<sup>+</sup> + H<sup>+</sup><br>
+            • Cu(NO<sub>3</sub>)<sub>2</sub> 水溶液顯 <span style="color:var(--chalk-cyan);">酸性</span>：<br>
+            　Cu<sup>2+</sup> + H<sub>2</sub>O ⇌ Cu(OH)<sup>+</sup> + H<sup>+</sup><br>
+            • KCN 水溶液顯 <span style="color:var(--chalk-yellow);">鹼性</span>：<br>
+            　CN<sup>-</sup> + H<sub>2</sub>O ⇌ HCN + OH<sup>-</sup>
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥口訣：強離子不水解，弱離子必水解！
+        </div>
+      </div>
+
+      <!-- 欄位二：二元酸及其鹽 -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>二、二元酸及其鹽</span>
+          <span style="font-size:0.75rem; opacity:0.8;">硫酸、碳酸、硫化氫</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head">1. 二元酸的分段解離</div>
+          <div style="font-size:0.8rem; line-height:1.55; letter-spacing:-0.3px;">
+            • <b>硫酸 (H<sub>2</sub>SO<sub>4</sub>)</b>：<br>
+            　H<sub>2</sub>SO<sub>4</sub> ➔ H<sup>+</sup> + HSO<sub>4</sub><sup>-</sup>（Ka1）<br>
+            　HSO<sub>4</sub><sup>-</sup> ⇌ H<sup>+</sup> + SO<sub>4</sub><sup>2-</sup>（Ka2）<br>
+            • <b>碳酸 (H<sub>2</sub>CO<sub>3</sub>)</b>：<br>
+            　H<sub>2</sub>CO<sub>3</sub> ➔ HCO<sub>3</sub><sup>-</sup> ➔ CO<sub>3</sub><sup>2-</sup><br>
+            • <b>硫化氫 (H<sub>2</sub>S)</b>：<br>
+            　H<sub>2</sub>S ➔ HS<sup>-</sup> ➔ S<sup>2-</sup>
+          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-green);">
+          <div class="sub-head" style="color:var(--chalk-green);">2. 解離常數大小特性</div>
+          <div style="font-size:0.79rem; line-height:1.5;">
+            • 多元酸各階段解離常數恆符合：<br>
+            　<b style="color:var(--chalk-yellow);"> Ka1 &gt; Ka2 </b>（因帶負電離子再釋放質子需克服庫侖靜電引力）。<br>
+            • 常數差異：若 Ka1 &gt;&gt; Ka2（如 H<sub>2</sub>S 之 Ka1 × Ka2 &lt; 10<sup>-20</sup>），第二段解離極微弱。
+          </div>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          💡 展哥提醒：多元酸第2段 Ka 遠小於第 1 段！
+        </div>
+      </div>
+
+      <!-- 欄位三：三元酸與某氫鹽酸鹼性判斷 -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>三、三元酸與某氫鹽判斷</span>
+          <span style="font-size:0.75rem; opacity:0.8;">磷酸系列與酸式鹽水解</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head">1. 三元酸 (磷酸 H<sub>3</sub>PO<sub>4</sub> 系列)</div>
+          <div style="font-size:0.78rem; line-height:1.55; letter-spacing:-0.3px;">
+            • 三階段解離反應：<br>
+            <div style="background:rgba(0,0,0,0.3); padding:4px; border-radius:4px; font-family:monospace; margin:3px 0; color:var(--chalk-cyan); font-size:0.73rem;">
+              H<sub>3</sub>PO<sub>4</sub> ➔ H<sub>2</sub>PO<sub>4</sub><sup>-</sup> ➔ HPO<sub>4</sub><sup>2-</sup> ➔ PO<sub>4</sub><sup>3-</sup>
             </div>
+            • 伴隨酸性遞減與共軛鹼強度遞增。
           </div>
         </div>
 
-        <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan); letter-spacing:-0.3px;">
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-cyan);">
           <div class="sub-head" style="color:var(--chalk-cyan);">
-            2. 難溶弱鹼：氫氧化鎂 Mg(OH)<sub>2</sub>
+            2. 判斷「某氫鹽」是酸性或鹼性法則
           </div>
-          <div class="chem-eq-hero" style="font-size:0.74rem; color:var(--chalk-cyan); margin:2px 0;">
-            Mg(OH)<sub>2(s)</sub> ⇌ Mg<sup>2+</sup> ＋ 2OH<sup>-</sup> , <i>K</i><sub>b</sub> ＝ 10<sup>-11</sup>
+          <div style="font-size:0.78rem; line-height:1.5;">
+            針對酸式鹽（含有可解離氫的酸式根離子，如 HSO<sub>3</sub><sup>-</sup>、H<sub>2</sub>PO<sub>4</sub><sup>-</sup>、HPO<sub>4</sub><sup>2-</sup>），其水溶液酸鹼性取決於<b>解離傾向 (Ka2)</b> 與 <b>水解傾向 (Kb = Kw / Ka1)</b> 的競爭：<br>
+            • 若 <b style="color:var(--chalk-yellow);"> Ka1 × Ka2 &gt; 10<sup>-14</sup> </b> ➔ 顯 <span style="color:var(--chalk-cyan);">酸性</span>（例如 H<sub>2</sub>PO<sub>4</sub><sup>-</sup>）<br>
+            • 若 <b style="color:var(--chalk-yellow);"> Ka1 × Ka2 &lt; 10<sup>-14</sup> </b> ➔ 顯 <span style="color:var(--chalk-yellow);">鹼性</span>（例如 HPO<sub>4</sub><sup>2-</sup>）<br>
           </div>
-          • <b>微觀 ICE 溶解平衡表</b>：<br>
+        </div>
+
+        <div class="note-pill" style="display:block; text-align:center;">
+          📌 展哥口訣：Ka1 × Ka2 ≷ 10<sup>-14</sup> 決定某氫鹽酸鹼！
+        </div>
+      </div>
+
+      <!-- 欄位四：重要鹽類命名與分類 -->
+      <div class="col-card">
+        <div class="col-title">
+          <span>四、重要鹽類命名與分類</span>
+          <span style="font-size:0.75rem; opacity:0.8;">正鹽、酸式鹽完整對照</span>
+        </div>
+
+        <div class="section-box">
+          <div class="sub-head">1. 磷酸系列 (三元酸 H<sub>3</sub>PO<sub>4</sub>)</div>
           <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
-            <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>Mg(OH)<sub>2(s)</sub></th><th>Mg<sup>2+</sup></th><th>2OH<sup>-</sup></th></tr>
-            <tr><td><b>初 (I)</b></td><td>過量固體</td><td>0 M</td><td>0 M</td></tr>
-            <tr><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋2<i>x</i></td></tr>
-            <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>約固體</td><td><i>x</i></td><td><span class="gold-glow" style="padding: 1px 6px; border-radius: 3px; display: inline-block;">2<i>x</i></span></td></tr>
+            <tr style="background:rgba(0,0,0,0.4);"><th>化學式</th><th>名稱</th><th>鹽分類</th><th>酸鹼性</th></tr>
+            <tr><td>H<sub>3</sub>PO<sub>4</sub></td><td>正磷酸</td><td>三元酸</td><td>酸性</td></tr>
+            <tr><td>NaH<sub>2</sub>PO<sub>4</sub></td><td>磷酸二氫鈉</td><td>酸式鹽</td><td><span style="color:var(--chalk-cyan);">酸式鹽(酸)</span></td></tr>
+            <tr><td>Na<sub>2</sub>HPO<sub>4</sub></td><td>磷酸氫二鈉</td><td>酸式鹽</td><td><span style="color:var(--chalk-yellow);">酸式鹽(鹼)</span></td></tr>
+            <tr><td>Na<sub>3</sub>PO<sub>4</sub></td><td>磷酸鈉</td><td>正鹽</td><td><span style="color:var(--chalk-yellow);">鹼性</span></td></tr>
           </table>
-          <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
-            • <i>K</i><sub>b</sub> 表達式與計量推導求解：<br>
-            <div style="font-family:monospace; color:var(--chalk-yellow); font-size:0.72rem; line-height:1.6; margin-top:2px;">
-              <i>K</i><sub>b</sub> ＝ ([Mg<sup>2+</sup>][OH<sup>-</sup>]<sup>2</sup>) / [Mg(OH)<sub>2(s)</sub>]<br>
-              10<sup>-11</sup> ＝ <i>x</i> · (2<i>x</i>)<sup>2</sup> / 1 ＝ 4<i>x</i><sup>3</sup><br>
-              <i>x</i><sup>3</sup> ＝ 2.5 × 10<sup>-12</sup> &nbsp;⇒&nbsp; <i>x</i> ≈ 1.36 × 10<sup>-4</sup> M<br>
-              • <b>實際計算出 2<i>x</i></b>：<br>
-              [OH<sup>-</sup>] ＝ 2<i>x</i> ＝ 2 × (1.36 × 10<sup>-4</sup>)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ <span style="color:var(--chalk-green); font-weight:bold;">2.72 × 10<sup>-4</sup> M</span>
-            </div>
-          </div>
+        </div>
+
+        <div class="reaction-box" style="border-left: 3px solid var(--chalk-orange); font-size:0.78rem;">
+          <div class="sub-head" style="color:var(--chalk-orange);">2. 亞磷酸與次磷酸系列</div>
+          • <b>亞磷酸 (H<sub>3</sub>PO<sub>3</sub>)</b>：二元酸（含 1 個 P-H 鍵，不可游離）<br>
+          　NaH<sub>2</sub>PO<sub>3</sub>：亞磷酸二氫鈉（正鹽！非酸式鹽）<br>
+          • <b>次磷酸 (H<sub>3</sub>PO<sub>2</sub>)</b>：一元酸（含 2 個 P-H 鍵）<br>
+          　NaH<sub>2</sub>PO<sub>2</sub>：次磷酸鈉（正鹽！）<br>
+          <span style="font-size:0.72rem; color:var(--chalk-yellow);">⚠️ 大考陷阱：看結構中可解離的 H 數，決定正鹽或酸式鹽！</span>
         </div>
 
         <div class="note-pill" style="display:block; text-align:center;">
-          📌 展哥重點：難溶弱鹼的 [OH<sup>-</sup>] 需透過 <i>K</i><sub>b</sub> 嚴格建立 ICE 並解出 2<i>x</i>！
+          💡 展哥筆記：亞磷酸、次磷酸的鈉鹽命名與正鹽判斷！
         </div>
       </div>
 
-      <!-- 欄位二：非含氧鹼：氨水 (NH3) 微觀結構與計算 -->
-      <div class="col-card">
-        <div class="col-title">
-          <span>二、非含氧鹼：氨水 (NH<sub>3</sub>)</span>
-          <span style="font-size:0.75rem; opacity:0.8;">微觀水合與 <i>K</i><sub>b</sub> 計算</span>
-        </div>
+    </div>
 
-        <div class="section-box">
-          <div class="sub-head" style="color:var(--chalk-yellow);">1. 氨水的微觀結構與水合歷程</div>
-          <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.75rem; text-align:center; font-family:monospace; line-height: 1.8;">
-            NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
-            
-            <!-- 使用絕對對齊的 pre 區塊表格 -->
-            <table style="width:100%; margin-top:6px; border-collapse:collapse; font-size:0.65rem; color:var(--chalk-cyan); text-align:center;">
-              <tr>
-                <!-- 1. NH3 (鎖定十字結構) -->
-                <td style="width:20%; vertical-align:top; padding:1px;">
-                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
-  │
-H－N:
-  │
-  H</pre>
-                </td>
-                <!-- ＋ 符號 -->
-                <td style="width:5%; vertical-align:middle; padding:1px; color:#cbd5e1;">＋</td>
-                <!-- 2. H2O -->
-                <td style="width:20%; vertical-align:top; padding:1px;">
-                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>H－O－H<br><br></pre>
-                </td>
-                <!-- 3. NH4OH (使用專屬 3 行獨立結構，保證上下 H 絕對正對 N) -->
-                <td style="width:25%; vertical-align:top; padding:1px;">
-                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
-  │
- N－OH
-  │
-  H</pre>
-                </td>
-                <!-- 4. NH4+ 與 OH- 各自對應正上方物種 -->
-                <td style="width:30%; vertical-align:top; padding:1px;">
-                  <table style="width:100%; border-collapse:collapse;">
-                    <tr>
-                      <!-- NH4+ (四周完整的十字結構) -->
-                      <td style="width:50%; vertical-align:top; text-align:center;">
-                        <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
-  │
-H－N<sup>+</sup>－H
-  │
-  H</pre>
-                      </td>
-                      <!-- OH- 對正上方 OH- -->
-                      <td style="width:50%; vertical-align:top; text-align:center;">
-                        <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>OH<sup>-</sup><br><br></pre>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-
-          </div>
-          <div style="font-size:0.8rem; line-height:1.5;">
-            • <b>巨觀微觀對比量化觀念</b>：<br>
-            <span style="color:var(--chalk-yellow); font-weight:bold;">「每 100 個 NH<sub>3</sub> 中，就有 1 個形成 NH<sub>4</sub>OH」</span><br>
-            顯示弱鹼在水中的水解產生 OH<sup>-</sup> 的比例極低（部分解離）。
-          </div>
+    <!-- 延伸思維專區 -->
+    <div class="extension-container" style="background: var(--ext-card-bg); border: 2px solid var(--ext-card-border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid var(--ext-badge-border); padding-bottom: 8px;">
+        <div style="font-size: 1.05rem; font-weight: 900; color: var(--ext-title); display: flex; align-items: center; gap: 8px;">
+          <span>🧠 【展氏新解】延伸思維：某氫鹽水解競爭與磷酸結構特論</span>
         </div>
-
-        <div class="reaction-box" style="border-left: 3px solid var(--chalk-orange); letter-spacing:-0.3px;">
-          <div class="sub-head" style="color:var(--chalk-orange);">
-            2. 0.1 M 氨水的解離計算
-          </div>
-          <div class="chem-eq-hero" style="font-size:0.74rem; color:var(--chalk-orange); margin:2px 0;">
-            NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub> ≈ 10<sup>-5</sup>
-          </div>
-          • <b>平衡 ICE 表格</b>：<br>
-          <table class="role-table" style="font-size:0.72rem; margin:3px 0;">
-            <tr style="background:rgba(0,0,0,0.4);"><th>狀態</th><th>NH<sub>3</sub></th><th>NH<sub>4</sub><sup>+</sup></th><th>OH<sup>-</sup></th></tr>
-            <tr><td><b>初 (I)</b></td><td>0.1 M</td><td>0 M</td><td>0 M</td></tr>
-            <tr><td><b>變 (C)</b></td><td>－<i>x</i></td><td>＋<i>x</i></td><td>＋<i>x</i></td></tr>
-            <tr style="border-top: 3px solid var(--chalk-yellow);"><td><b>平 (E)</b></td><td>0.1 － <i>x</i></td><td><i>x</i></td><td><i>x</i></td></tr>
-          </table>
-          <div style="font-size:0.78rem; margin-top:4px; line-height:1.5;">
-            • 近似解與公式代入：<br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem;">
-              <i>K</i><sub>b</sub> ＝ <i>x</i><sup>2</sup> / (0.1 － <i>x</i>) ≈ <i>x</i><sup>2</sup> / 0.1 ＝ 10<sup>-5</sup><br>
-              ⇒ [OH<sup>-</sup>] ＝ <i>x</i> ＝ √(0.1 × 10<sup>-5</sup>) ＝ 10<sup>-3</sup> M
-            </div>
-          </div>
-        </div>
-
-        <div class="note-pill" style="display:block; text-align:center;">
-          💡 展哥口訣：計算弱鹼 可直接套用近似解 [OH<sup>-</sup>] ＝ √(<i>c</i>·<i>K</i><sub>b</sub>)！
-        </div>
+        <span style="font-size: 0.78rem; background: rgba(192,132,252,0.18); border: 1px solid #a855f7; color: var(--ext-title); padding: 2px 8px; border-radius: 20px; font-weight: 800;">某氫鹽水解機制 · Ka1 × Ka2 數學推導</span>
       </div>
 
-      <!-- 欄位三：酸鹼性公式對比與 pH 計算 -->
-      <div class="col-card">
-        <div class="col-title">
-          <span>三、酸鹼性公式對比與 pH 計算</span>
-          <span style="font-size:0.75rem; opacity:0.8;">酸性與鹼性公式對稱性</span>
-        </div>
-
-        <div class="section-box">
-          <div class="sub-head" style="color:var(--chalk-yellow);">1. 酸性與鹼性公式全對比</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
-            
-            <!-- 紅色光暈酸性公式 -->
-            <div style="background: rgba(239, 68, 68, 0.15); border: 1.5px solid #ef4444; border-radius: 6px; padding: 8px; box-shadow: 0 0 12px rgba(239, 68, 68, 0.35); text-align: center;">
-              <div style="font-size: 0.76rem; font-weight: 900; color: #f87171; margin-bottom: 4px;">🔴 酸性公式</div>
-              <div style="font-size: 0.74rem; font-family: monospace; color: #fca5a5; line-height: 1.6;">
-                [H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>)<br>
-                α ＝ √(<i>K</i><sub>a</sub> / <i>c</i>)
-              </div>
-            </div>
-
-            <!-- 藍色光暈鹼性公式 -->
-            <div style="background: rgba(59, 130, 246, 0.15); border: 1.5px solid #3b82f6; border-radius: 6px; padding: 8px; box-shadow: 0 0 12px rgba(59, 130, 246, 0.35); text-align: center;">
-              <div style="font-size: 0.76rem; font-weight: 900; color: #60a5fa; margin-bottom: 4px;">🔵 鹼性公式</div>
-              <div style="font-size: 0.74rem; font-family: monospace; color: #93c5fd; line-height: 1.6;">
-                [OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>)<br>
-                α ＝ √(<i>K</i><sub>b</sub> / <i>c</i>)
-              </div>
-            </div>
-
+      <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+        <div style="background: var(--ext-inner-box); border: 1px solid var(--card-border); border-radius: 8px; padding: 11px; font-size: 0.84rem;">
+          <div style="font-weight:800; color:var(--chalk-cyan); font-size:0.9rem; margin-bottom:4px;">
+            📌 A. 為什麼「某氫鹽」的酸鹼性可以由 Ka1 × Ka2 與 10<sup>-14</sup> 決定？
           </div>
+          <p style="font-size:0.81rem; color:var(--text-sub); line-height:1.55;">
+            以二元酸 H<sub>2</sub>A 的酸式根 HA<sup>-</sup> 為例，它在水中同時面臨兩條路徑（解離 Ka2 與水解 Kb = Kw / Ka1）。比較兩者的 [H<sup>+</sup>] 與 [OH<sup>-</sup>] 產生速率，可推導出 [H<sup>+</sup>] = √(Ka1 × Ka2)。若 Ka1 × Ka2 &gt; 10<sup>-14</sup> 顯酸性；反之顯鹼性。
+          </p>
         </div>
-
-        <div class="reaction-box" style="border-left: 3px solid var(--chalk-yellow); letter-spacing:-0.3px;">
-          <div class="sub-head" style="color:var(--chalk-yellow);">
-            2. pH 與 pOH 換算與經典範例
+        <div style="background: var(--ext-inner-box); border: 1px solid var(--card-border); border-radius: 8px; padding: 11px; font-size: 0.84rem;">
+          <div style="font-weight:800; color:var(--chalk-orange); font-size:0.9rem; margin-bottom:4px;">
+            📌 B. 亞磷酸 (H<sub>3</sub>PO<sub>3</sub>) 與次磷酸 (H<sub>3</sub>PO<sub>2</sub>) 為什麼不是三元酸？
           </div>
-          <div style="font-size:0.79rem; line-height:1.5;">
-            • <b>核心關係式</b>：<br>
-            <div style="text-align:center; color:var(--chalk-yellow); font-weight:bold; margin:2px 0;">
-              pH ＋ pOH ＝ 14 &nbsp;⇒&nbsp; pH ＝ 14 － pOH
-            </div>
-            • <b>【例題】請問 0.1 M NH<sub>3</sub> 水中的 pH 為何？</b><br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.75rem; margin-top:3px; background:rgba(0,0,0,0.3); padding:5px; border-radius:4px;">
-              ① 求 [OH<sup>-</sup>]：<br>
-              &nbsp;&nbsp;&nbsp;[OH<sup>-</sup>] ＝ √(<i>c</i> · <i>K</i><sub>b</sub>) ＝ √(0.1 × 10<sup>-5</sup>)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ 10<sup>-3</sup> M<br>
-              ② 求 pOH：<br>
-              &nbsp;&nbsp;&nbsp;pOH ＝ －log(10<sup>-3</sup>) ＝ 3<br>
-              ③ 求 pH：<br>
-              &nbsp;&nbsp;&nbsp;pH ＝ 14 － pOH ＝ 14 － 3 ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">11</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="note-pill" style="display:block; text-align:center;">
-          📌 展哥口訣：算鹼性先求 [OH<sup>-</sup>] 再求 pOH，最後用 14 減掉 pOH 即得 pH！
+          <p style="font-size:0.81rem; color:var(--text-sub); line-height:1.55;">
+            分子中與磷原子直接以共價鍵結合的氫（P-H 鍵）無法游離出氫離子。亞磷酸含 1 個 P-H 鍵（二元酸）；次磷酸含 2 個 P-H 鍵（一元酸）。這也是為什麼 NaH<sub>2</sub>PO<sub>3</sub> 與 NaH<sub>2</sub>PO<sub>2</sub> 叫做正鹽而非酸式鹽的根本原因！
+          </p>
         </div>
       </div>
-
-      <!-- 欄位四：共軛酸鹼對的常數關係 Ka·Kb = 10^-14 -->
-      <div class="col-card">
-        <div class="col-title">
-          <span>四、共軛酸鹼對 <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> 關係</span>
-          <div style="width: 100%; text-align: center; font-size: 0.78rem; color: var(--chalk-yellow); margin-top: 2px;">
-            共軛酸 <i>K</i><sub>a</sub> × 共軛鹼 <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup>
-          </div>
-        </div>
-
-        <div class="section-box">
-          <div class="sub-head" style="color:var(--chalk-yellow);">1. 共軛酸鹼對常數關係推導</div>
-          <div style="font-size:0.8rem; line-height:1.5; letter-spacing:-0.3px;">
-            以銨根與氨 (NH<sub>4</sub><sup>+</sup> / NH<sub>3</sub>) 為例：<br>
-            <div style="background: rgba(0,0,0,0.25); border: 1px dashed var(--chalk-cyan); padding: 5px; border-radius: 4px; margin: 4px 0; font-size: 0.75rem; text-align: center;">
-              <span style="color: var(--chalk-pink); font-weight: bold;">NH<sub>4</sub><sup>+</sup></span>（多一個 H<sup>+</sup>） ⇌ <span style="color: var(--chalk-orange); font-weight: bold;">NH<sub>3</sub></span>（少一個 H<sup>+</sup>）<br>
-              <span style="font-size: 0.7rem; color: var(--text-sub);">💡 多 H<sup>+</sup> 者為共軛酸，少 H<sup>+</sup> 者為共軛鹼</span>
-            </div>
-            • <b>酸 NH<sub>4</sub><sup>+</sup> 解離</b>：<br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.73rem; margin:2px 0; text-align:center;">
-              NH<sub>4</sub><sup>+</sup> ⇌ NH<sub>3</sub> ＋ H<sup>+</sup> , <i>K</i><sub>a</sub>
-            </div>
-            • <b>鹼 NH<sub>3</sub> 水解</b>：<br>
-            <div style="font-family:monospace; color:var(--chalk-green); font-size:0.73rem; margin:2px 0; text-align:center;">
-              NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup> , <i>K</i><sub>b</sub>
-            </div>
-            • <b>直式方程式相加與消去</b>：<br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin:4px 0; background:rgba(0,0,0,0.3); padding:6px; border-radius:4px;">
-              <table style="width:100%; border-collapse:collapse; font-family:monospace; font-size:0.74rem;">
-                <tr>
-                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>4</sub><sup>+</sup></span></td>
-                  <td style="text-align:center; width:24px;">⇌</td>
-                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-orange);">NH<sub>3</sub></span> ＋ H<sup>+</sup></td>
-                  <td style="text-align:right; color:var(--text-sub);">, <i>K</i><sub>a</sub></td>
-                </tr>
-                <tr>
-                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-orange);">NH<sub>3</sub></span> ＋ H<sub>2</sub>O</td>
-                  <td style="text-align:center; width:24px;">⇌</td>
-                  <td style="padding:1px 0;"><span style="text-decoration: line-through; color: var(--chalk-red);">NH<sub>4</sub><sup>+</sup></span> ＋ OH<sup>-</sup></td>
-                  <td style="text-align:right; color:var(--text-sub);">, <i>K</i><sub>b</sub></td>
-                </tr>
-              </table>
-              <hr style="border: 0; border-top: 1.5px solid var(--chalk-yellow); margin: 4px 0;">
-              <table style="width:100%; border-collapse:collapse; font-family:monospace; font-size:0.74rem;">
-                <tr>
-                  <td style="padding:1px 0; font-weight:bold;">H<sub>2</sub>O</td>
-                  <td style="text-align:center; width:24px; font-weight:bold;">⇌</td>
-                  <td style="padding:1px 0; font-weight:bold;">H<sup>+</sup> ＋ OH<sup>-</sup></td>
-                  <td style="text-align:right; color:var(--chalk-yellow); font-weight:bold;"><i>K</i><sub>w</sub> ＝ <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ 10<sup>-14</sup></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="reaction-box" style="border-left: 3px solid var(--chalk-green); letter-spacing:-0.3px;">
-          <div class="sub-head" style="color:var(--chalk-green);">
-            2. 實戰演練：0.1 M NH<sub>4</sub><sup>+</sup> 的 pH 計算
-          </div>
-          <div style="font-size:0.79rem; line-height:1.5;">
-            • <b>【例題】0.1 M NH<sub>4</sub><sup>+</sup> 水中的 pH ＝ 5（已知 NH<sub>3</sub> 的 <i>K</i><sub>b</sub> ＝ 10<sup>-5</sup>）</b><br>
-            <div style="font-family:monospace; color:var(--chalk-cyan); font-size:0.74rem; margin-top:3px; background:rgba(0,0,0,0.3); padding:5px; border-radius:4px;">
-              ① 求共軛酸的 <i>K</i><sub>a</sub>：<br>
-              &nbsp;&nbsp;&nbsp;因需先知道 NH<sub>4</sub><sup>+</sup> 的 <i>K</i><sub>a</sub>，<br>
-              &nbsp;&nbsp;&nbsp;利用 <i>K</i><sub>a</sub> · <i>K</i><sub>b</sub> ＝ <i>K</i><sub>w</sub> ＝ 10<sup>-14</sup> 特性：<br>
-              &nbsp;&nbsp;&nbsp;<i>K</i><sub>a</sub> ＝ 10<sup>-14</sup> / 10<sup>-5</sup> ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">10<sup>-9</sup></span><br>
-              ② 計算共軛酸的 [H<sup>+</sup>]：<br>
-              &nbsp;&nbsp;&nbsp;[H<sup>+</sup>] ＝ √(<i>c</i> · <i>K</i><sub>a</sub>)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ √(0.1 × 10<sup>-9</sup>)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＝ <span style="color:var(--chalk-green); font-weight:bold;">10<sup>-5</sup> M</span><br>
-              ③ 計算 pH 值：<br>
-              &nbsp;&nbsp;&nbsp;pH ＝ －log(10<sup>-5</sup>) ＝ <span style="color:var(--chalk-yellow); font-weight:bold;">5</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="note-pill" style="display:block; text-align:center;">
-          📌 展哥結論：共軛酸鹼對的 <i>K</i><sub>a</sub> 乘 <i>K</i><sub>b</sub> 恆等於 10<sup>-14</sup>，互換計算超級好用！
-        </div>
-      </div>
-
     </div>
 
     <!-- 頁尾版權 -->
     <div class="footer">
-      <div>展氏新解 · 計算鹼性及其共軛酸的酸性講義</div>
+      <div>展氏新解 · 多元酸及其鹽的分類、水解與酸鹼性判斷</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1291</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">158</span> 次
       </div>
     </div>
 
@@ -750,13 +630,13 @@ H－N<sup>+</sup>－H
       <div class="quiz-header">
         <div style="display:flex; align-items:center; gap:8px;">
           <span class="brand-tag">展氏新解</span>
-          <h2 style="font-size:1.15rem; font-weight:900;">計算鹼性及其共軛酸的酸性即時檢測系統</h2>
+          <h2 style="font-size:1.15rem; font-weight:900;">多元酸鹽與酸鹼性判斷即時檢測系統</h2>
         </div>
         <button class="btn" style="background:#dc2626; color:#fff; border:none;" onclick="closeQuiz()">✕ 關閉返回講義</button>
       </div>
 
       <div class="quiz-stats-bar">
-        <span>已作答：<b id="answeredCount">0</b> / <span id="totalCount">4</span> 題</span>
+        <span>已作答：<b id="answeredCount">0</b> / <span id="totalCount">3</span> 題</span>
         <span>答對率：<b id="accuracyRate" style="color:var(--chalk-yellow);">0%</b></span>
         <button class="btn" style="padding:2px 8px; font-size:0.75rem;" onclick="resetQuiz()">🔄 全部重置</button>
       </div>
@@ -769,59 +649,45 @@ H－N<sup>+</sup>－H
     const QUESTION_BANK = [
       {
         id: 1,
-        level: "強鹼與難溶弱鹼計算",
-        question: "在 25°C 下，已知氫氧化鎂 Mg(OH)2 的溶度積常數 Kb = 10^-11。關於其飽和水溶液之敘述，下列何者正確？",
+        level: "某氫鹽酸鹼性判斷",
+        question: "關於「某氫鹽」（酸式鹽）在水溶液中的酸鹼性判斷，下列敘述何者正確？",
         options: [
-          "A. 1 M 的 NaOH 水溶液中 [OH-] = 0.5 M",
-          "B. 難溶弱鹼 Mg(OH)2 飽和溶液中 [OH-] = 2x，其計算值約為 2.72 × 10^-4 M",
-          "C. 10^-11 = x^3",
-          "D. Mg(OH)2 屬強溶強鹼，在水中 100% 完全解離",
-          "E. 飽和 Mg(OH)2 溶液中的 [Mg2+] 等於 [OH-]"
+          "A. 所有酸式鹽水溶液一定都顯酸性",
+          "B. 若 Ka1 × Ka2 &gt; 10<sup>-14</sup>，則該酸式根水溶液顯鹼性",
+          "C. 若 Ka1 × Ka2 &lt; 10<sup>-14</sup>，則該酸式根水溶液顯鹼性（如 HPO<sub>4</sub><sup>2-</sup>）",
+          "D. 某氫鹽的酸鹼性與解離常數完全無關，僅取決於金屬離子種類",
+          "E. NaHCO<sub>3</sub> 水溶液顯酸性"
         ],
-        answer: 1,
-        explanation: "【展氏新解解析】：<br>• Mg(OH)2 ⇌ Mg2+ + 2OH-，設溶解度為 x，則 [Mg2+] = x、[OH-] = 2x。<br>• 經計量推導，4x^3 = 10^-11，得 [OH-] = 2x ≈ 2.72 × 10^-4 M。<br>• 故選項 B 正確。"
+        answer: 2,
+        explanation: "【展氏新解解析】：<br>• 酸式鹽水溶液的酸鹼性取決於解離傾向與水解傾向的競爭。<br>• 若 Ka1 × Ka2 &gt; 10<sup>-14</sup> 顯酸性；若 Ka1 × Ka2 &lt; 10<sup>-14</sup> 顯鹼性（例如 HPO<sub>4</sub><sup>2-</sup>）。<br>• 故選項 C 正確。"
       },
       {
         id: 2,
-        level: "非含氧鹼氨水微觀與計算",
-        question: "已知 0.1 M 氨水 (NH3) 之 Kb ≈ 10^-5。關於此溶液之敘述，下列何者正確？",
+        level: "亞磷酸與次磷酸結構特論",
+        question: "下列關於磷酸系列的敘述，何者正確？",
         options: [
-          "A. 巨觀下每 100 個 NH3 分子全數解離",
-          "B. 水中 [OH-] = 10^-3 M",
-          "C. 此溶液的 pOH = 5",
-          "D. 此溶液的 pH = 3",
-          "E. 此溶液呈強酸性"
+          "A. 亞磷酸 (H<sub>3</sub>PO<sub>3</sub>) 是一種三元酸",
+          "B. 次磷酸 (H<sub>3</sub>PO<sub>2</sub>) 是一種二元酸",
+          "C. NaH<sub>2</sub>PO<sub>3</sub> 是一種酸式鹽",
+          "D. NaH<sub>2</sub>PO<sub>3</sub> 是一種正鹽，因為亞磷酸是二元酸，分子中含有 P-H 鍵使可解離 H 為 2 個",
+          "E. H<sub>3</sub>PO<sub>4</sub> 的各階段解離常數符合 Ka1 &lt; Ka2 &lt; Ka3"
         ],
-        answer: 1,
-        explanation: "【展氏新解解析】：<br>• [OH-] = √(c · Kb) = √(0.1 × 10^-5) = 10^-3 M。<br>• 故 pOH = 3，pH = 14 - 3 = 11。<br>• 故選項 B 正確。"
+        answer: 3,
+        explanation: "【展氏新解解析】：<br>• 亞磷酸 (H<sub>3</sub>PO<sub>3</sub>) 是二元酸（含 1 個 P-H 鍵），故 NaH<sub>2</sub>PO<sub>3</sub> 是正鹽而非酸式鹽。<br>• 多元酸解離常數恆符合 Ka1 &gt; Ka2 &gt; Ka3。<br>• 故選項 D 正確。"
       },
       {
         id: 3,
-        level: "酸鹼性公式對比與 pH 換算",
-        question: "關於弱酸與弱鹼之計算公式，下列對稱關係何者正確？",
+        level: "離子水解實戰",
+        question: "在 25°C 下，下列哪一種鹽類的水溶液會顯現「酸性」？",
         options: [
-          "A. 弱酸 [H+] = √(c · Ka)，弱鹼 [OH-] = √(c · Kb)",
-          "B. 弱酸解離度 α = √(c · Ka)",
-          "C. 溶液中 pH × pOH = 14",
-          "D. 氨水解離常數表達式中分母不能近似",
-          "E. 強鹼水溶液中 [OH-] = √(c · Kb)"
-        ],
-        answer: 0,
-        explanation: "【展氏新解解析】：<br>• 弱酸之氫離子濃度 [H+] = √(c · Ka)，弱鹼之氫氧根離子濃度 [OH-] = √(c · Kb)。<br>• 故選項 A 正確。"
-      },
-      {
-        id: 4,
-        level: "共軛酸鹼對常數關係",
-        question: "已知氨 (NH3) 之 Kb = 10^-5。請問 0.1 M 銨根離子 (NH4+) 水溶液之 pH 值為多少？",
-        options: [
-          "A. 1",
-          "B. 3",
-          "C. 5",
-          "D. 9",
-          "E. 11"
+          "A. KCN",
+          "B. CH<sub>3</sub>COONa",
+          "C. MgCl<sub>2</sub>",
+          "D. NaHCO<sub>3</sub>",
+          "E. Na<sub>2</sub>HPO<sub>4</sub>"
         ],
         answer: 2,
-        explanation: "【展氏新解解析】：<br>• NH4+ 之 Ka = 10^-14 / Kb = 10^-14 / 10^-5 = 10^-9。<br>• [H+] = √(0.1 × 10^-9) = 10^-5 M。<br>• pH = -log(10^-5) = 5。<br>• 故選項 C 正確。"
+        explanation: "【展氏新解解析】：<br>• KCN 與 CH<sub>3</sub>COONa 為弱酸強鹼鹽，顯鹼性。<br>• MgCl<sub>2</sub> 為強酸弱鹼鹽（金屬離子 Mg<sup>2+</sup> 會發生水解產生 H<sup>+</sup>），水溶液顯酸性。<br>• 故選項 C 正確。"
       }
     ];
 
@@ -887,13 +753,11 @@ H－N<sup>+</sup>－H
       let correctCount = 0;
       answeredKeys.forEach(qid => {
         const q = QUESTION_BANK.find(item => item.id == qid);
-        if (userAnswers[qid] === q.answer) {
-          correctCount++;
-        }
+        if (userAnswers[qid] === q.answer) correctCount++;
       });
 
-      const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
-      document.getElementById('accuracyRate').innerText = accuracy + '%';
+      const rate = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+      document.getElementById('accuracyRate').innerText = rate + '%';
     }
 
     function resetQuiz() {
