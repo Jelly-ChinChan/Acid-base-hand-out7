@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【展氏新解】鹼性的計算與其共軛酸的酸性攻略</title>
+  <title>【展氏新解】計算鹼性及其共軛酸的酸性</title>
   <style>
     :root {
       --bg-board: #142c1f;
@@ -414,7 +414,7 @@
   <div class="toolbar">
     <div class="toolbar-title-wrap">
       <span class="brand-tag">展氏新解</span>
-      <span class="toolbar-title">鹼性的計算與其共軛酸的酸性攻略</span>
+      <span class="toolbar-title">計算鹼性及其共軛酸的酸性</span>
     </div>
     <div class="btn-group">
       <button class="btn btn-primary" onclick="openQuiz()">📝 進入隨堂測驗</button>
@@ -430,7 +430,7 @@
     <div class="board-header">
       <div class="main-title-wrap">
         <span class="brand-tag" style="font-size:0.95rem; padding:3px 8px;">展氏新解</span>
-        <h1>鹼性的計算與其共軛酸的酸性攻略</h1>
+        <h1>計算鹼性及其共軛酸的酸性</h1>
         <span class="badge-pill">強鹼與難溶弱鹼 · 氨水微觀水合 · 酸鹼公式對比 · 共軛酸鹼對 K<sub>a</sub>·K<sub>b</sub> = 10<sup>-14</sup></span>
       </div>
     </div>
@@ -509,50 +509,46 @@
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.75rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
             
-            <!-- 5欄對齊網格表格：讓每一種物種與下方結構式完美垂直對齊 -->
-            <table style="width:100%; margin-top:8px; border-collapse:collapse; font-size:0.64rem; color:var(--chalk-cyan); text-align:center;">
+            <!-- 使用等寬 pre 區塊確保 NH3、H2O、NH4OH、NH4+ 與 OH- 完全垂直對齊 -->
+            <table style="width:100%; margin-top:6px; border-collapse:collapse; font-size:0.65rem; color:var(--chalk-cyan); text-align:center;">
               <tr>
                 <!-- 1. NH3 (十字結構) -->
                 <td style="width:20%; vertical-align:top; padding:1px;">
-                  <div style="text-align: center;">H</div>
-                  <div style="text-align: center;">│</div>
-                  <div style="white-space: nowrap; margin-left: -6px;">H－N:</div>
-                  <div style="text-align: center;">│</div>
-                  <div style="text-align: center;">H</div>
+                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
+  │
+H－N:
+  │
+  H</pre>
                 </td>
                 <!-- ＋ 符號 -->
                 <td style="width:5%; vertical-align:middle; padding:1px; color:#cbd5e1;">＋</td>
                 <!-- 2. H2O -->
                 <td style="width:20%; vertical-align:top; padding:1px;">
-                  <br>
-                  H－O－H
+                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>H－O－H<br><br></pre>
                 </td>
-                <!-- 3. NH4OH (N置中對齊，上下H正對N) -->
+                <!-- 3. NH4OH (N置中，左右延伸) -->
                 <td style="width:25%; vertical-align:top; padding:1px;">
-                  <div style="display: inline-block; text-align: center;">
-                    <div>H</div>
-                    <div>│</div>
-                    <div style="white-space: nowrap;"><span style="display:inline-block; width:1ch; text-align:center;">N</span>－H－OH</div>
-                    <div>│</div>
-                    <div>H</div>
-                  </div>
+                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
+  │
+H－N－H－OH
+  │
+  H</pre>
                 </td>
-                <!-- 4 & 5. NH4+ 與 OH- 各自獨立對應上方物種 -->
+                <!-- 4. NH4+ 與 OH- 各自對應正上方物種 -->
                 <td style="width:30%; vertical-align:top; padding:1px;">
                   <table style="width:100%; border-collapse:collapse;">
                     <tr>
-                      <!-- NH4+ 結構式對正上方 NH4+ -->
+                      <!-- NH4+ (四周完整的十字結構) -->
                       <td style="width:50%; vertical-align:top; text-align:center;">
-                        <div style="text-align: center;">H</div>
-                        <div style="text-align: center;">│</div>
-                        <div style="white-space: nowrap; margin-left: -6px;">H－N<sup>+</sup></div>
-                        <div style="text-align: center;">│</div>
-                        <div style="text-align: center;">H</div>
+                        <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
+  │
+H－N<sup>+</sup>－H
+  │
+  H</pre>
                       </td>
-                      <!-- OH- 結構式對正上方 OH- -->
+                      <!-- OH- 對正上方 OH- -->
                       <td style="width:50%; vertical-align:top; text-align:center;">
-                        <br><br>
-                        OH<sup>-</sup>
+                        <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>OH<sup>-</sup><br><br></pre>
                       </td>
                     </tr>
                   </table>
@@ -739,10 +735,10 @@
 
     <!-- 頁尾版權 -->
     <div class="footer">
-      <div>展氏新解 · 鹼性的計算與其共軛酸的酸性攻略講義</div>
+      <div>展氏新解 · 計算鹼性及其共軛酸的酸性講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1214</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1267</span> 次
       </div>
     </div>
 
@@ -754,7 +750,7 @@
       <div class="quiz-header">
         <div style="display:flex; align-items:center; gap:8px;">
           <span class="brand-tag">展氏新解</span>
-          <h2 style="font-size:1.15rem; font-weight:900;">鹼性計算與其共軛酸酸性即時檢測系統</h2>
+          <h2 style="font-size:1.15rem; font-weight:900;">計算鹼性及其共軛酸的酸性即時檢測系統</h2>
         </div>
         <button class="btn" style="background:#dc2626; color:#fff; border:none;" onclick="closeQuiz()">✕ 關閉返回講義</button>
       </div>
