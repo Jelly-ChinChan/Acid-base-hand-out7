@@ -509,7 +509,7 @@
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.75rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
             
-            <!-- 使用絕對對齊的 pre 區塊表格 -->
+            <!-- 使用 5 欄獨立等寬 pre 區塊表格：確保每一個結構式正對上方物種，且 NH4OH 的上下 H 絕對正對 N -->
             <table style="width:100%; margin-top:6px; border-collapse:collapse; font-size:0.65rem; color:var(--chalk-cyan); text-align:center;">
               <tr>
                 <!-- 1. NH3 (鎖定十字結構) -->
@@ -526,19 +526,19 @@ H－N:
                 <td style="width:20%; vertical-align:top; padding:1px;">
                   <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>H－O－H<br><br></pre>
                 </td>
-                <!-- 3. NH4OH (使用專屬 3 行獨立結構，保證上下 H 絕對正對 N) -->
+                <!-- 3. NH4OH (採用獨立 3 行垂直置中結構，N 絕對居中，上下 H 零誤差對齊) -->
                 <td style="width:25%; vertical-align:top; padding:1px;">
-                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
-  │
- N－OH
-  │
-  H</pre>
+                  <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">     H
+     │
+H－N－H－OH
+     │
+     H</pre>
                 </td>
-                <!-- 4. NH4+ 與 OH- 各自對應正上方物種 -->
+                <!-- 4. NH4+ 與 OH- 各自獨立對應正上方物種 -->
                 <td style="width:30%; vertical-align:top; padding:1px;">
                   <table style="width:100%; border-collapse:collapse;">
                     <tr>
-                      <!-- NH4+ (四周完整的十字結構) -->
+                      <!-- NH4+ (四周完整的十字結構，補齊右側 H) -->
                       <td style="width:50%; vertical-align:top; text-align:center;">
                         <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
   │
@@ -727,7 +727,7 @@ H－N<sup>+</sup>－H
         </div>
 
         <div class="note-pill" style="display:block; text-align:center;">
-          📌 展哥結論：共軛酸鹼對的 <i>K</i><sub>a</sub> 乘 <i>K</i><sub>b</sub> 恆等於 10<sup>-14</sup>，互換計算超級好用！
+          📌 展哥結論：共軛酸鹼對的 <i>K</i><sub>a</sub> 乘 <i>K</i><sub>b</sub> 恆等於 10<sup>-14</sup>[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)，互換計算超級好用！
         </div>
       </div>
 
@@ -738,7 +738,7 @@ H－N<sup>+</sup>－H
       <div>展氏新解 · 計算鹼性及其共軛酸的酸性講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1291</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1348</span> 次
       </div>
     </div>
 
@@ -770,58 +770,58 @@ H－N<sup>+</sup>－H
       {
         id: 1,
         level: "強鹼與難溶弱鹼計算",
-        question: "在 25°C 下，已知氫氧化鎂 Mg(OH)2 的溶度積常數 Kb = 10^-11。關於其飽和水溶液之敘述，下列何者正確？",
+        question: "在 25°C 下，已知氫氧化鎂 Mg(OH)2 的溶度積常數 Kb = 10^-11。關於其飽和水溶液之敘述[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)，下列何者正確？",
         options: [
           "A. 1 M 的 NaOH 水溶液中 [OH-] = 0.5 M",
-          "B. 難溶弱鹼 Mg(OH)2 飽和溶液中 [OH-] = 2x，其計算值約為 2.72 × 10^-4 M",
+          "B. 難溶弱鹼 Mg(OH)2 飽和溶液中 [OH-] = 2x，其計算值約為 2.72 × 10^-4 M[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)",
           "C. 10^-11 = x^3",
           "D. Mg(OH)2 屬強溶強鹼，在水中 100% 完全解離",
           "E. 飽和 Mg(OH)2 溶液中的 [Mg2+] 等於 [OH-]"
         ],
         answer: 1,
-        explanation: "【展氏新解解析】：<br>• Mg(OH)2 ⇌ Mg2+ + 2OH-，設溶解度為 x，則 [Mg2+] = x、[OH-] = 2x。<br>• 經計量推導，4x^3 = 10^-11，得 [OH-] = 2x ≈ 2.72 × 10^-4 M。<br>• 故選項 B 正確。"
+        explanation: "【展氏新解解析】：<br>• Mg(OH)2 ⇌ Mg2+ + 2OH-，設溶解度為 x，則 [Mg2+] = x、[OH-] = 2x[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)。<br>• 經計量推導，4x^3 = 10^-11，得 [OH-] = 2x ≈ 2.72 × 10^-4 M[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)。<br>• 故選項 B 正確。"
       },
       {
         id: 2,
         level: "非含氧鹼氨水微觀與計算",
-        question: "已知 0.1 M 氨水 (NH3) 之 Kb ≈ 10^-5。關於此溶液之敘述，下列何者正確？",
+        question: "已知 0.1 M 氨水 (NH3) 之 Kb ≈ 10^-5。關於此溶液之敘述[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)，下列何者正確？",
         options: [
           "A. 巨觀下每 100 個 NH3 分子全數解離",
-          "B. 水中 [OH-] = 10^-3 M",
+          "B. 水中 [OH-] = 10^-3 M[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)",
           "C. 此溶液的 pOH = 5",
           "D. 此溶液的 pH = 3",
           "E. 此溶液呈強酸性"
         ],
         answer: 1,
-        explanation: "【展氏新解解析】：<br>• [OH-] = √(c · Kb) = √(0.1 × 10^-5) = 10^-3 M。<br>• 故 pOH = 3，pH = 14 - 3 = 11。<br>• 故選項 B 正確。"
+        explanation: "【展氏新解解析】：<br>• [OH-] = √(c · Kb) = √(0.1 × 10^-5) = 10^-3 M[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)。<br>• 故 pOH = 3，pH = 14 - 3 = 11[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span)。<br>• 故選項 B 正確。"
       },
       {
         id: 3,
         level: "酸鹼性公式對比與 pH 換算",
-        question: "關於弱酸與弱鹼之計算公式，下列對稱關係何者正確？",
+        question: "關於弱酸與弱鹼之計算公式，下列對稱關係何者正確？[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)",
         options: [
-          "A. 弱酸 [H+] = √(c · Ka)，弱鹼 [OH-] = √(c · Kb)",
+          "A. 弱酸 [H+] = √(c · Ka)，弱鹼 [OH-] = √(c · Kb)[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span)",
           "B. 弱酸解離度 α = √(c · Ka)",
           "C. 溶液中 pH × pOH = 14",
           "D. 氨水解離常數表達式中分母不能近似",
           "E. 強鹼水溶液中 [OH-] = √(c · Kb)"
         ],
         answer: 0,
-        explanation: "【展氏新解解析】：<br>• 弱酸之氫離子濃度 [H+] = √(c · Ka)，弱鹼之氫氧根離子濃度 [OH-] = √(c · Kb)。<br>• 故選項 A 正確。"
+        explanation: "【展氏新解解析】：<br>• 弱酸之氫離子濃度 [H+] = √(c · Ka)，弱鹼之氫氧根離子濃度 [OH-] = √(c · Kb)[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span)。<br>• 故選項 A 正確。"
       },
       {
         id: 4,
         level: "共軛酸鹼對常數關係",
-        question: "已知氨 (NH3) 之 Kb = 10^-5。請問 0.1 M 銨根離子 (NH4+) 水溶液之 pH 值為多少？",
+        question: "已知氨 (NH3) 之 Kb = 10^-5。請問 0.1 M 銨根離子 (NH4+) 水溶液之 pH 值為多少？[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)",
         options: [
           "A. 1",
           "B. 3",
-          "C. 5",
+          "C. 5[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)",
           "D. 9",
           "E. 11"
         ],
         answer: 2,
-        explanation: "【展氏新解解析】：<br>• NH4+ 之 Ka = 10^-14 / Kb = 10^-14 / 10^-5 = 10^-9。<br>• [H+] = √(0.1 × 10^-9) = 10^-5 M。<br>• pH = -log(10^-5) = 5。<br>• 故選項 C 正確。"
+        explanation: "【展氏新解解析】：<br>• NH4+ 之 Ka = 10^-14 / Kb = 10^-14 / 10^-5 = 10^-9[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span)。<br>• [H+] = √(0.1 × 10^-9) = 10^-5 M[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span)。<br>• pH = -log(10^-5) = 5[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span)。<br>• 故選項 C 正確。"
       }
     ];
 
