@@ -509,10 +509,10 @@
           <div style="background: rgba(0,0,0,0.3); border: 1px dashed var(--chalk-cyan); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 0.75rem; text-align:center; font-family:monospace; line-height: 1.8;">
             NH<sub>3</sub> ＋ H<sub>2</sub>O ⇌ NH<sub>4</sub>OH ⇌ NH<sub>4</sub><sup>+</sup> ＋ OH<sup>-</sup><br>
             
-            <!-- 使用 SVG 繪製 NH4OH 結構式，保證絕對垂直對齊，毫無誤差 -->
+            <!-- 5 欄對齊表格：NH3 與已鎖定的 NH4OH 保持 SVG，NH4+ 也升級為 SVG 向量圖形實現完美對齊 -->
             <table style="width:100%; margin-top:6px; border-collapse:collapse; font-size:0.65rem; color:var(--chalk-cyan); text-align:center;">
               <tr>
-                <!-- 1. NH3 (鎖定十字結構) -->
+                <!-- 1. NH3 (十字結構) -->
                 <td style="width:20%; vertical-align:top; padding:1px;">
                   <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
   │
@@ -526,7 +526,7 @@ H－N:
                 <td style="width:20%; vertical-align:top; padding:1px;">
                   <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;"><br><br>H－O－H<br><br></pre>
                 </td>
-                <!-- 3. NH4OH (使用 SVG 向量圖形確保 N 與上下 H 絕對完美正對心軸) -->
+                <!-- 3. NH4OH (SVG - 已鎖定完美對齊) -->
                 <td style="width:25%; vertical-align:middle; padding:1px; text-align:center;">
                   <svg width="105" height="55" viewBox="0 0 105 55" style="display:inline-block; vertical-align:middle;">
                     <!-- 上 H -->
@@ -547,13 +547,22 @@ H－N:
                 <td style="width:30%; vertical-align:top; padding:1px;">
                   <table style="width:100%; border-collapse:collapse;">
                     <tr>
-                      <!-- NH4+ (四周完整的十字結構) -->
-                      <td style="width:50%; vertical-align:top; text-align:center;">
-                        <pre style="font-family:monospace; color:var(--chalk-cyan); line-height:1.2; margin:0;">  H
-  │
-H－N<sup>+</sup>－H
-  │
-  H</pre>
+                      <!-- NH4+ (升級為 SVG 向量圖形，實現絕對完美的四周十字結構與對齊) -->
+                      <td style="width:50%; vertical-align:middle; text-align:center;">
+                        <svg width="65" height="55" viewBox="0 0 65 55" style="display:inline-block; vertical-align:middle;">
+                          <!-- 上 H -->
+                          <text x="32" y="11" fill="#67e8f9" font-family="monospace" font-size="11" text-anchor="middle">H</text>
+                          <line x1="32" y1="14" x2="32" y2="24" stroke="#67e8f9" stroke-width="1.5" />
+                          <!-- 下 H -->
+                          <text x="32" y="51" fill="#67e8f9" font-family="monospace" font-size="11" text-anchor="middle">H</text>
+                          <line x1="32" y1="36" x2="32" y2="44" stroke="#67e8f9" stroke-width="1.5" />
+                          <!-- 左 H- -->
+                          <text x="3" y="32" fill="#67e8f9" font-family="monospace" font-size="11">H－</text>
+                          <!-- 中心 N+ -->
+                          <text x="32" y="34" fill="#67e8f9" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">N⁺</text>
+                          <!-- 右 -H -->
+                          <text x="40" y="32" fill="#67e8f9" font-family="monospace" font-size="11">－H</text>
+                        </svg>
                       </td>
                       <!-- OH- 對正上方 OH- -->
                       <td style="width:50%; vertical-align:top; text-align:center;">
@@ -747,7 +756,7 @@ H－N<sup>+</sup>－H
       <div>展氏新解 · 計算鹼性及其共軛酸的酸性講義</div>
       <div class="footer-copyright">© 展氏新解 版權所有</div>
       <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;">
-        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1375</span> 次
+        👀 累計點閱：<span id="pageViews" style="color:var(--chalk-yellow); font-weight:bold;">1402</span> 次
       </div>
     </div>
 
