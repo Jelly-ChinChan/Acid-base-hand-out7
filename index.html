@@ -206,6 +206,15 @@
     @media (max-width: 1400px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) { .board-grid { grid-template-columns: 1fr; } }
 
+    .ext-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 768px) { .ext-grid { grid-template-columns: 1fr; } }
+
     .col-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -759,13 +768,13 @@ H－N:
         <span style="font-size: 0.78rem; background: var(--ext-badge-bg); color: var(--ext-title); padding: 2px 8px; border-radius: 12px; border: 1px solid var(--ext-badge-border); font-weight: 700;">同離子效應 · 亨德森方程式</span>
       </div>
       
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: stretch;">
+      <div class="ext-grid">
         <!-- 左側：緩衝機制 -->
         <div style="background: var(--ext-inner-box); padding: 10px; border-radius: 8px; border-left: 3px solid var(--ext-title); font-size: 0.82rem; line-height: 1.6;">
           <div style="font-weight: 900; color: var(--ext-title); margin-bottom: 4px;">1. 緩衝溶液的微觀抗酸抗鹼機制</div>
-          • <b>組成原則</b>：由「弱酸及其共軛鹼鹽」（如 $\text{CH}_3\text{COOH} / \text{CH}_3\text{COONa}$）或「弱鹼及其共軛酸鹽」（如 $\text{NH}_3 / \text{NH}_4\text{Cl}$）等莫耳數混合而成。<br>
-          • <b>抗加進的強酸 ($\text{H}^+$)</b>：共軛鹼（如 $\text{CH}_3\text{COO}^-$）會與之結合生成弱酸，抑制 pH 急降。<br>
-          • <b>抗加進的強鹼 ($\text{OH}^-$)</b>：弱酸分子會放出 $\text{H}^+$ 與其中和生成水，抑制 pH 急升。
+          • <b>組成原則</b>：由「弱酸及其共軛鹼鹽」（如 CH<sub>3</sub>COOH / CH<sub>3</sub>COONa）或「弱鹼及其共軛酸鹽」（如 NH<sub>3</sub> / NH<sub>4</sub>Cl）等莫耳數混合而成。<br>
+          • <b>抗加進的強酸 (H<sup>+</sup>)</b>：共軛鹼（如 CH<sub>3</sub>COO<sup>-</sup>）會與之結合生成弱酸，抑制 pH 急降。<br>
+          • <b>抗加進的強鹼 (OH<sup>-</sup>)</b>：弱酸分子會放出 H<sup>+</sup> 與其中和生成水，抑制 pH 急升。
         </div>
 
         <!-- 右側：計算公式與口訣 -->
